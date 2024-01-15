@@ -15,7 +15,7 @@
 - [Java](./언어소개/자바를쓰는이유/why_use_java.md)
 - Kotlin
 - JavaScript
-- Swift
+- [Swift](https://github.com/QuaRang1225/TIL-quarang/wiki/Swift%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC)
 
 ## 네트워크 - 입문서 (2024.01.12 ~ 2024.00.00)
 
