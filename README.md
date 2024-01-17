@@ -17,7 +17,7 @@
 ## 각자 언어 소개 (2024.01.04)
 
 - [Java](./언어소개/자바를쓰는이유/why_use_java.md)
-- Kotlin
+- [Kotlin](https://github.com/PCYSB/TIL-PCYSB/blob/master/%EC%BD%94%ED%8B%80%EB%A6%B0%EC%97%90%EB%8C%80%ED%95%B4%EC%84%9C/%EC%BD%94%ED%8B%80%EB%A6%B0%20%EC%9D%B4%EB%9E%80.md)
 - [TypeScript](https://github.com/team-imad-study/study-question/blob/main/%EC%96%B8%EC%96%B4%EC%86%8C%EA%B0%9C/TypeScript%EB%A5%BC%EC%95%8C%EB%A0%A4%EC%A3%BC%EA%B2%9F%EB%8B%A4/TypeScript%EC%97%90%20%EB%8C%80%ED%95%B4%EC%84%9C/24.01.04_TypeScript%EC%97%90%20%EB%8C%80%ED%95%B4%EC%84%9C.pdf)
 - [Swift](https://github.com/QuaRang1225/TIL-quarang/wiki/Swift%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC)
 
