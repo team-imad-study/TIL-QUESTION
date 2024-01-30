@@ -227,7 +227,7 @@ L3 스위치와 라우터 이 두 장비는 처음에는 다른 용도로 사용
 
 GPIB는 IEEE-488에서 규정된 인터페이스 규격이다. IEEE-488은 단거리 디지털 통신 버스로, 1960년대 후반 전자 측정 장비에 사용되었으며 지금도 사용되고 있다. IEEE-488은 HP-IB(Hewlett-Packard Interface Bus)로서 개발되었으며, 보통 GPIB (General Purpose Interface Bus)로 불린다.
 
-> 출처
+> 참고
 > - [IEEE 802](https://ko.wikipedia.org/wiki/IEEE_802)
 > - [IEEE.802 시리즈 완벽 총정리 :D](https://m.blog.naver.com/hai0416/221551383382)
 
