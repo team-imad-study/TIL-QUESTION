@@ -29,7 +29,7 @@
 
 > 작성자 :  Quarang
 
-# 문제 SMTP의 전송과정
+## 문제. 선량한 시민 A가 메일을 보내려할때 발신 측 클라이언트와 서버 사이에 일어나는 일의 과정을 설명하시오.
 
 <img width="462" alt="스크린샷 2024-02-05 오후 12 45 31" src="https://github.com/team-imad-study/study-question/assets/31721255/b5c1562a-f48f-4c72-aa3c-5cc49700f53d">
 
