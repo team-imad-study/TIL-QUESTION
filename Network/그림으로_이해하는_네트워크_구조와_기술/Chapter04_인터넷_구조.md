@@ -18,6 +18,8 @@
   3. 자신의 LAN주소가 아닌 통신은 라우팅 테이블이나
      기본게이트웨이를 설정하여 전달함
 
+---
+
 # DAY10
 작성일 : 2024/02/05
 
@@ -25,7 +27,7 @@
 - 39 인터넷에서 사용하는
 - 40 이메일을 주고받는 구조
 - 41 웹 페이지를 열람할 수 있는 구조
-- URL/URI\
+- 42 URL/URI
 
 > 작성자 :  Quarang
 
@@ -58,3 +60,27 @@
 10. 발신 : 본문 작성 후 마지막에 ‘.’특수문자를 보내면 본문 전송이 끝나고 Quit 명령어를 전송함
 11. 서버 : 완료 응답하고 TCP연결 세션이 끊킴
 <img width="705" alt="스크린샷 2024-02-05 오후 12 26 17" src="https://github.com/team-imad-study/study-question/assets/31721255/6d95aed5-c25f-4f95-8ca9-808c47b0dbda">
+
+---
+
+> 작성자 :
+
+---
+
+> 작성자 : ncookie
+
+## 아래 요소들을 사용해 IMAD의 로그인 과정 그리기
+
+![문제](https://github.com/team-imad-study/study-question/assets/16646208/0442ed2f-73a2-4b77-990b-a424b953b6e9)
+
+![답안](https://github.com/team-imad-study/study-question/assets/16646208/3f4b3967-b4d5-4041-8624-927b1521e405)
+
+![로그인 성공 시 응답](https://github.com/team-imad-study/study-question/assets/16646208/35b8b2e6-0a90-443c-9ae4-ba64d864e932)
+
+![로그인 실패 시 응답](https://github.com/team-imad-study/study-question/assets/16646208/7df3a1d9-fc47-499a-9ea8-b26be7d8bdc1)
+
+---
+
+> 작성자 : 
+
+
