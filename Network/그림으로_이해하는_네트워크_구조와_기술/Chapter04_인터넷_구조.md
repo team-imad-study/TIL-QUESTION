@@ -71,12 +71,16 @@
 
 ## 아래 요소들을 사용해 IMAD의 로그인 과정 그리기
 
+### 문제
 ![문제](https://github.com/team-imad-study/study-question/assets/16646208/0442ed2f-73a2-4b77-990b-a424b953b6e9)
 
+### 답안
 ![답안](https://github.com/team-imad-study/study-question/assets/16646208/3f4b3967-b4d5-4041-8624-927b1521e405)
 
+### 로그인 성공 시 응답
 ![로그인 성공 시 응답](https://github.com/team-imad-study/study-question/assets/16646208/35b8b2e6-0a90-443c-9ae4-ba64d864e932)
 
+### 로그인 실패 시 응답
 ![로그인 실패 시 응답](https://github.com/team-imad-study/study-question/assets/16646208/7df3a1d9-fc47-499a-9ea8-b26be7d8bdc1)
 
 ---
