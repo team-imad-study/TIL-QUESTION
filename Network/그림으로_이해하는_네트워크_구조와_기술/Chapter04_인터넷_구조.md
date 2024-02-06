@@ -95,16 +95,19 @@ TCP/IP는 주된 목적은 데이터의 전송과 라우팅을 담당하는 것�
 ---
 > 작성자 : KUN
 
-## Q. ![image (4)](https://github.com/team-imad-study/study-question/assets/136051281/2a5f8cbc-efd7-43f1-83a7-bbe2b25c2021) 이것이 아이매드의 웹 서버의 페이지 부분이라고 했을때![image (3)](https://github.com/team-imad-study/study-question/assets/136051281/297a3284-61e8-4da5-9770-3c0249ca4d14)![image (2)](https://github.com/team-imad-study/study-question/assets/136051281/2eee632d-b674-49ed-8efa-233dc9b56aa3) 다음 두URL의 서버경로를 서술해주세요
+## Q. ![image (4)](https://github.com/team-imad-study/study-question/assets/136051281/2a5f8cbc-efd7-43f1-83a7-bbe2b25c2021)
+### 이것이 아이매드의 웹 서버의 페이지 부분이라고 했을때![image (3)](https://github.com/team-imad-study/study-question/assets/136051281/297a3284-61e8-4da5-9770-3c0249ca4d14)![image (2)](https://github.com/team-imad-study/study-question/assets/136051281/2eee632d-b674-49ed-8efa-233dc9b56aa3) 다음 두URL의 서버경로를 서술해주세요
 
 
-- 1. ![image (1)](https://github.com/team-imad-study/study-question/assets/136051281/294b9602-c44e-403b-8490-d825e1b41ff9) URL에서의 “/” 는 서버내 파일 경로를 의미하므로 
+- 1. ![image (1)](https://github.com/team-imad-study/study-question/assets/136051281/294b9602-c44e-403b-8490-d825e1b41ff9)
+URL에서의 “/” 는 서버내 파일 경로를 의미하므로 
 main/main_setting
 즉 main 폴더안의
  main_setting 폴더안의 
 index.tsx 페이지로 접속하게됩니다.
 
-- 2. ![image](https://github.com/team-imad-study/study-question/assets/136051281/2a340fd3-7a69-4e71-92a8-2f57886d3039) 서버내 파일 경로임은 동일하지만 
+- 2. ![image](https://github.com/team-imad-study/study-question/assets/136051281/2a340fd3-7a69-4e71-92a8-2f57886d3039)
+서버내 파일 경로임은 동일하지만 
 “[boardId]” 부분이 
 서버클라이언트 내에서 지정한 
 다이나믹 라우팅 부분이므로 
