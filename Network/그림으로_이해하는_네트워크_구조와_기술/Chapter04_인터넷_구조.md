@@ -115,8 +115,41 @@ https://iimad.com/boards/DAF75IPb7N/edit
 DAF75IPb7N 부분은 
 다이나믹 라우팅을 위한 게시물번호라고 유추할수있다
 
+---
 
+# DAY10
+작성일 : 2024/02/05
 
+> 범위
+- 43 HTTP/HTTPS
+- 44 DNS
+- 45 ICMP
+- 46 텔넷
 
+> 작성자 : Quarang
 
+---
 
+> 작성자 :
+
+---
+
+> 작성자 :
+
+---
+
+> 작성자 : NCookie
+
+## 텔넷은 패킷을 암호화하는 기능이 없기 때문에 보안 문제가 있다. 그럼에도 리눅스, 윈도우 등의 OS에서 아직까지 지원하는 이유는?
+
+아래와 같은 경우나 이유 때문에 간간이 사용됨
+
+- Telnet만을 지원하는 구식 장비 또는 서버에 접속하는 경우 (생각보다 많음)
+- 서버의 특정 포트나 서비스가 제대로 작동하는지 확인하기 위해
+- 조직 또는 기업 내부에서 서버/장치에 간단하게 연결 후 사용하기 위해
+- SSH 설정하기 귀찮을 때
+
+> 참고
+> - [What is Telnet and what is it still used for?
+](https://www.digitalcitizen.life/simple-questions-what-telnet-what-can-it-still-be-used/)
+> - [[Serious] Why is Telnet still used?](https://www.reddit.com/r/AskNetsec/comments/52rdaf/serious_why_is_telnet_still_used/)
