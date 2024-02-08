@@ -141,7 +141,7 @@ ICMP Redirect는 ICMP 프로토콜 중 하나의 타입으로, 더 좋은 경로
 ![스크린샷 2024-02-07 063505](https://github.com/team-imad-study/study-question/assets/108323826/3e32e4a9-a5d6-4ca4-8028-6af487406885)
 
 참고
-> - [](https://www.youtube.com/watch?v=tos6Wlfkb18&t=912s)
+> - [ICMP에 대한 설명](https://www.youtube.com/watch?v=tos6Wlfkb18&t=912s)
 
 
 ---
