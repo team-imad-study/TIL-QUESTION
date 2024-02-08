@@ -132,7 +132,9 @@ DAF75IPb7N 부분은
 
 > 작성자 : PCYSB
 
-## Q. 해당 그림에서 불필요하게 경로를 돌아서 가고 있을때 이때 router 2번은 어떤 역할 을 할까? #5
+## Q. 해당 그림에서 불필요하게 경로를 돌아서 가고 있을때 이때 router 2번은 어떤 역할 을 할까? 
+
+([#1](https://github.com/team-imad-study/study-question/issues/5) 참고)
 
 ![스크린샷 2024-02-07 063515](https://github.com/team-imad-study/study-question/assets/108323826/1f65a04b-9074-47d4-9f68-d7ea3f5d6cf7)
 
