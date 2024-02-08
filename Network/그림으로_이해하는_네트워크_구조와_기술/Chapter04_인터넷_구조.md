@@ -130,7 +130,19 @@ DAF75IPb7N 부분은
 
 ---
 
-> 작성자 :
+> 작성자 : PCYSB
+
+## Q. 해당 그림에서 불필요하게 경로를 돌아서 가고 있을때 이때 router 2번은 어떤 역할 을 할까?
+
+![스크린샷 2024-02-07 063515](https://github.com/team-imad-study/study-question/assets/108323826/1f65a04b-9074-47d4-9f68-d7ea3f5d6cf7)
+
+ICMP Redirect는 ICMP 프로토콜 중 하나의 타입으로, 더 좋은 경로가 있으면 라우터가 ICMP Redirect 패킷을 호스트에게 보내준다. 때문에 해당 라우터가 최적의 경로임을 호스트에게 알려주기 위하여 라우터로부터 호스트로 보내어주며 Host의 라우팅 테이블이 변경된다.
+
+![스크린샷 2024-02-07 063505](https://github.com/team-imad-study/study-question/assets/108323826/3e32e4a9-a5d6-4ca4-8028-6af487406885)
+
+참고
+> - [](https://www.youtube.com/watch?v=tos6Wlfkb18&t=912s)
+
 
 ---
 
