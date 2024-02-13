@@ -124,6 +124,8 @@ DAF75IPb7N 부분은
 - 45 ICMP
 - 46 텔넷
 
+---
+
 > 작성자 : Quarang
 
 ## 문제. HTTP통신은 왜 Stateless 방식이다. 그럼 Stateless는 무엇인가? 반대 개념도 있을까?
@@ -204,3 +206,45 @@ ICMP Redirect는 ICMP 프로토콜 중 하나의 타입으로, 더 좋은 경로
 > - [What is Telnet and what is it still used for?
 ](https://www.digitalcitizen.life/simple-questions-what-telnet-what-can-it-still-be-used/)
 > - [[Serious] Why is Telnet still used?](https://www.reddit.com/r/AskNetsec/comments/52rdaf/serious_why_is_telnet_still_used/)
+
+---
+
+# DAY12
+작성일 : 2024/02/13
+
+> 범위
+- 47 SSH
+- 48 FTP
+- 49 NTP
+- 50 Ajax, REST API
+
+---
+
+> 작성자 : NCookie
+
+## 공개키(비대칭키) 암호화 방식으로 데이터를 주고 받는 과정을 설명하시오. (A, B, Cracker)
+
+A와 B는 각각 모두가 볼 수 있는 공개키와 자기만이 가지고 있는 개인키를 가지고 있다. 
+(이 때 암호화 방식에 따라 다양한 알고리즘과 프로세스를 사용하여 공개키와 개인키 쌍을 생성한다. 대표적인 알고리즘으로 RSA, ECC, DSA 등이 있다.)
+
+### A가 B에게 데이터를 보낼 때
+
+- A 측에서 보내려는 평문 데이터(plain data)를 B의 공개키로 암호화한다. (encryption) 
+- 이 데이터를 받은 B는 자신의 개인키로 해독한다. (decryption)
+- B의 공개키와 개인키는 서로 쌍(pair)이기 때문에 이와 같이 해석할 수 있다.
+- Cracker는 A와 B의 공개키를 알고 있더라도 개인키를 알지 못하기 때문에 데이터를 해석할 수 없다.
+
+### 전자서명 응용
+
+- A가 B에게 데이터를 보낼 때 본문 데이터 뒤에 자신의 개인키로 본문을 암호화한 데이터(전자서명)를 추가한다.
+- B는 본문 데이터를 해석한 후, A의 개인키로 암호화한 데이터를 A의 공개키로 해석해서 본문과 전자서명 부분이 일치하는지 확인한다.
+- A와 B의 공개키를 탈취한 해커가 B에게 데이터를 보내려고 해도, A의 공개키와 매칭되는 개인키가 없기 때문에 전자서명 부분이 일치하지 않는다.
+- 전자서명을 사용하면 송신자의 인증과 신원 확인, 데이터의 무결성 보장 등의 이점이 있다.
+
+> 참고
+> - [암호학1 - 4.1. 양방향 암호화 - 비대칭키(공개키 방식) - 기밀성을 위해서 사용하기](https://www.youtube.com/watch?v=MR4sCU82tgo&ab_channel=%EC%83%9D%ED%99%9C%EC%BD%94%EB%94%A9)
+> - [암호법1 - 4.2. 양방향 암호화 - 비대칭키(공개키) - 전자 서명하는 방법 (이벤트는 본문을 참고해주세요!)](https://www.youtube.com/watch?v=O7SiDuTCysM&ab_channel=%EC%83%9D%ED%99%9C%EC%BD%94%EB%94%A9)
+
+---
+
+> 작성자 : 
