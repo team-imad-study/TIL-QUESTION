@@ -258,23 +258,28 @@ A와 B는 각각 모두가 볼 수 있는 공개키와 자기만이 가지고 �
 
 아래의 개념과 같이 설명
 > RestAPI란?
+
 Rest(Representational State Transfer)ful API는 자원을 이름으로 구분하여 해당자원의 상태를 주고받는 API 아키텍쳐 방식임.
 - HTTP프로토콜을 사용하여 자원을 명시함
 - CRUD 작업을 위한 메서드(get,post,patch,delete 등)사용
 
 > 그럼 CRUD란?
+
 CRUD는 대부분의 컴퓨터 소프트웨어가 가지는 기본적인 데이터 처리 기능인 Create(생성), Read(읽기), Update(갱신), Delete(삭제)를 묶어서 일컫는 말
 
 > RestAPI의 설계 예시
 
 1. 동사보다 명사를 사용해야함
+   
 -  HTTP에서 제공하는 메서드가 기능을 포함한 동사형을 사용하고 있기 때문
-```json
+  
+```
 GET https://baseURL.com/apple/delete (X)
 Delete https://baseURL.com/apple (O)
 ```
+
 2. 마지막에 슬래시 (/)를 포함하지 않음
-```json
+```
 Delete https://baseURL.com/apple/ (X)
 Delete https://baseURL.com/apple (O)
 ```
