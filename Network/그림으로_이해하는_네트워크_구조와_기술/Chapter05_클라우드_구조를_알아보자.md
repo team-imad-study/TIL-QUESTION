@@ -7,7 +7,9 @@
 - 52 서버 가상화
 - 53 분산 기술
 - 54 IaaS/PaaS/SaaS/Dass
+
 ---
+
 > 작성자 Quarang
 
 ## 서버를 인프라 구축 방식들과 그 방식에 대해 설명하시오
@@ -47,4 +49,45 @@
 > 참고 : https://www.redhat.com/ko/topics/cloud-computing/public-cloud-vs-private-cloud-and-hybrid-cloud
 > 참고 : https://notepad96.tistory.com/121
 
+--- 
 
+> 작성자 : KUN
+
+--- 
+
+> 작성자 : PCYSB
+
+--- 
+
+> 작성자 : NCookie
+
+## AWS는 IaaS, PaaS, SaaS 중 어디에 해당할까?
+
+AWS(Amazon Web Services)는 `IaaS(Infrastructure as a Service)`와 `PaaS(Platform as a Service)`를 제공한다. 
+
+직접적으로 `SaaS(Software as a Service)`를 제공하지는 않는다. AWS는 클라우드 인프라를 제공하여 기업이 자체적으로 애플리케이션을 구축, 배포 및 관리할 수 있도록 도와주는데, 이는 SaaS와는 조금 다르다.
+
+### EC2와 RDS는?
+
+#### EC2
+
+`Amazon Elastic Compute Cloud(Amazon EC2)`는 Amazon Web Services(AWS) 클라우드에서 온디맨드 확장 가능 컴퓨팅 용량을 제공한다. 원하는 수의 가상 서버를 구축하고 보안 및 네트워킹을 구성하며 스토리지를 관리할 수 있다. 트래픽 및 컴퓨팅 성능에 따라 용량을 늘리거나 줄일 수 있다.
+
+따라서 `EC2`는 가상 서버, 스토리지, 네트워킹 및 기타 컴퓨팅 리소스와 같은 기본적인 인프라를 제공하는 `IaaS`에 해당한다. 
+
+#### RDS
+
+`Amazon Relational Database Service(Amazon RDS)`는 AWS 클라우드에서 관계형 데이터베이스를 더 쉽게 설치, 운영 및 확장할 수 있는 웹 서비스다. 이 서비스는 산업 표준 관계형 데이터베이스를 위한 경제적이고 크기 조절이 가능한 용량을 제공하고 공통 데이터베이스 관리 작업을 관리한다. Amazon RDS를 사용하면 번거로운 수동 작업을 처리할 필요가 없어 애플리케이션과 사용자에게 집중할 수 있다.
+
+PaaS에서는 제공업체가 자체 인프라에서 하드웨어와 소프트웨어를 호스팅하고 이러한 플랫폼을 사용자에게 통합 솔루션, 솔루션 스택 또는 인터넷을 통한 서비스로 제공한다. 주로 개발자와 프로그래머에게 유용한 PaaS를 통해 사용자는 자체 애플리케이션을 개발, 실행 및 관리할 수 있으며, 이 과정에서 일반적으로 이러한 프로세스와 관련된 인프라 또는 플랫폼을 구축하고 유지 관리할 필요가 없다. 따라서 `RDS`는 `PaaS`에 해당한다.
+
+#### 그 외 AWS의 서비스
+
+EC2, S3 등은 IaaS에, Elastic Beanstalk, AWS Lambda 등이 PaaS에 해당한다.
+
+> 참고
+> - [AWS 기반 서비스형 소프트웨어(SaaS)](https://aws.amazon.com/ko/saas/)
+> - [서비스형 인프라(IaaS)란 무엇인가요?](https://aws.amazon.com/ko/what-is/iaas/)
+> - [IaaS, PaaS 및 SaaS 비교](https://www.redhat.com/ko/topics/cloud-computing/iaas-vs-paas-vs-saas)
+> - [Amazon EC2란 무엇인가요?](https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/concepts.html)
+> - [Amazon Relational Database Service(Amazon RDS)란 무엇입니까?](https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/Welcome.html)
