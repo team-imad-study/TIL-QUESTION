@@ -4,7 +4,6 @@
 작성일 : 2024/02/16
 
 > 범위
-
 - 51 클라우드 구조
 - 52 서버 가상화
 - 53 분산 기술
@@ -12,7 +11,7 @@
 
 ---
 
-> 작성자 Quarang
+> 작성자 : Quarang
 
 ## 서버를 인프라 구축 방식들과 그 방식에 대해 설명하시오
 
@@ -120,16 +119,14 @@ PaaS에서는 제공업체가 자체 인프라에서 하드웨어와 소프트�
 
 EC2, S3 등은 IaaS에, Elastic Beanstalk, AWS Lambda 등이 PaaS에 해당한다.
 
-> 참고
+## 참고
 > - [AWS 기반 서비스형 소프트웨어(SaaS)](https://aws.amazon.com/ko/saas/)
-
-
-
 > - [서비스형 인프라(IaaS)란 무엇인가요?](https://aws.amazon.com/ko/what-is/iaas/)
 > - [IaaS, PaaS 및 SaaS 비교](https://www.redhat.com/ko/topics/cloud-computing/iaas-vs-paas-vs-saas)
 > - [Amazon EC2란 무엇인가요?](https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/concepts.html)
 > - [Amazon Relational Database Service(Amazon RDS)란 무엇입니까?](https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/Welcome.html)
 
+---
 
 # DAY14
 작성일 : 2024/02/17
