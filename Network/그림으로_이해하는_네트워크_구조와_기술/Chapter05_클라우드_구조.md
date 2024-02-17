@@ -1,4 +1,6 @@
-![image](https://github.com/team-imad-study/study-question/assets/31721255/2acded97-102a-4241-b999-ee1d3de12c93)# DAY13
+
+
+# DAY13
 작성일 : 2024/02/16
 
 > 범위
@@ -45,6 +47,7 @@
 
 - 다수의 클라우드 업체의 서비스를 결합한 환경
 - AWS + Azure, AWS + Azure + GCP 등
+  
 
 > 참고 : https://www.redhat.com/ko/topics/cloud-computing/public-cloud-vs-private-cloud-and-hybrid-cloud
 > 참고 : https://notepad96.tistory.com/121
