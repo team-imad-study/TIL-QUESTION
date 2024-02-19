@@ -249,12 +249,59 @@ EC2, S3 등은 IaaS에, Elastic Beanstalk, AWS Lambda 등이 PaaS에 해당한�
 - 62 프라이빗 클라우드와 퍼블릭 클라우드
 
 ---
+
 > 작성자 :
+
 ---
+
 > 작성자 :
+
 ---
-> 작성자 :
+
+> 작성자 : NCookie
+
+## GCP(Google Cloud Platform)의 강점이 빅데이터 및 머신 러닝 관련인 이유
+
+### TensorFlow 지원
+
+구글은 TensorFlow를 개발한 회사로서, GCP는 이 프레임워크를 완벽하게 지원한다. 
+
+### TPU(Tensor Processing Unit) 인프라
+
+GCP는 TPU라고 하는 특수한 하드웨어 가속기를 제공한다. TPU는 딥러닝 작업을 가속화하는 데 특히 효율적이며, 특히 대규모 모델 및 데이터셋을 다루는 데 유용하다.
+
+### 관련 서비스 제공
+
+- Google Cloud AI 플랫폼
+  - Google Cloud AI 플랫폼: 머신러닝 모델을 구축, 학습, 배포하기 위한 통합된 플랫폼입니다. AutoML 기능을 통해 개발자가 머신러닝 모델을 자동으로 만들 수 있습니다.
+  - AI Hub: 머신러닝 모델, 템플릿 및 데이터셋을 공유하고 검색할 수 있는 중앙 집중식 리포지토리입니다.
+- 머신러닝 엔진
+  - Cloud Machine Learning Engine: TensorFlow 및 Scikit-learn과 같은 프레임워크를 사용하여 머신러닝 모델을 학습하고 배포할 수 있습니다.
+- 데이터 분석 및 처리
+  - BigQuery ML: SQL 쿼리를 사용하여 BigQuery 데이터에 대한 머신러닝 모델을 만들고 예측할 수 있습니다.
+  - Dataflow: 대규모 데이터 처리 및 실시간 스트리밍을 위한 완전 관리형 서비스입니다.
+- 비전 및 이미지 분석
+  - Cloud Vision API: 이미지를 분석하고 컴퓨터 비전 모델을 쉽게 통합할 수 있는 API입니다.
+  - AutoML Vision: 사용자 정의 이미지 분류 및 객체 감지 모델을 만들 수 있는 서비스입니다.
+- 자연어 처리(NLP)
+  - Cloud Natural Language API: 텍스트를 분석하여 감정 분석, 개체 인식, 문장 구문 분석 등의 작업을 수행하는 API입니다.
+  - AutoML Natural Language: 사용자 정의 자연어 처리 모델을 만들고 학습시킬 수 있는 서비스입니다.
+- 음성 및 음성 처리
+  - Cloud Speech-to-Text: 음성을 텍스트로 변환하는 서비스입니다.
+  - Cloud Text-to-Speech: 텍스트를 음성으로 변환하는 서비스입니다.
+- 기타 서비스
+  - Kubernetes Engine (GKE): 컨테이너화된 머신러닝 및 딥러닝 작업을 관리하기 위한 서비스입니다.
+  - TensorFlow Enterprise: 기업 환경에서 TensorFlow를 위한 엔터프라이즈 지원 및 관리 도구입니다.
+
+![image](https://github.com/team-imad-study/study-question/assets/16646208/c1fd0417-aacb-4a4f-ab6a-453d1174231d)
+> GCP는 데이터 수집부터 처리, 저장, 분석, 사용까지 필요한 기술 및 플랫폼을 제공한다.
+
+## 참고
+
+- [How to Build a Scalable Data Analytics Pipeline](https://www.freecodecamp.org/news/scalable-data-analytics-pipeline/)
+
 ---
+
 > 작성자 : Quarang
 
 ## 문제. 프라이빗 클라우드를 사용하는 예시를 생각해보시오.
