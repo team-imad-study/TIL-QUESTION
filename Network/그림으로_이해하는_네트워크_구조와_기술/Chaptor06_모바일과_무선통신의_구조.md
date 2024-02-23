@@ -33,7 +33,8 @@
 - 다수의 직교하는 부반송파들에 정보를 실어서 전송하는 방식
 - 장점 : 주파수 효율이 좋아 통신속도가 비약적으로 증가
 
-[주파수 사진]
+<img width="564" alt="스크린샷 2024-02-23 오후 10 23 24" src="https://github.com/team-imad-study/study-question/assets/31721255/95e9ffab-8bed-4a26-b93b-e50011c6f1a0">
+
 
 > 참고 : https://rf-yeolmu.tistory.com/63?category=881824
 
