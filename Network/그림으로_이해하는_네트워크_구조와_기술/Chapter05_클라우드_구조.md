@@ -260,6 +260,21 @@ EC2, S3 등은 IaaS에, Elastic Beanstalk, AWS Lambda 등이 PaaS에 해당한�
 
 > 작성자 : KUN
 
+![웹프론트서버구축](https://github.com/team-imad-study/study-question/assets/136051281/849de28a-81b0-40f3-9561-30b271754bfc)
+
+## Q. 이 그림은 기초적인 웹프론트 서버를 AWS로 구축시킨 요약도이다. 다음설명을보고 각번호에 들어갈 AWS 네트워크 기능을 유추하시오
+
+
+1. Route53 (DNS 기능): 사용자가 입력한 도메인을 IP
+주소로 변환시킴
+
+2. Cloud Front (CDN 기능): 사용자와 물리적으로 가까운서
+버를 배치하고 데이터를 캐싱해 통신속도를 빠르게함
+
+3. 로드벨런서 (ELB) 기능 : 외부에서 엑세스 한 트래픽을 여러
+서버로 분산시켜 부하를 분산시킴
+
+
 ---
 
 > 작성자 : PCYSB
