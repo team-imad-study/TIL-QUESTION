@@ -39,7 +39,22 @@
 > 참고 : https://rf-yeolmu.tistory.com/63?category=881824
 
 ---
-> 작성자 :
+> 작성자 : KUN
+
+## Q. 우리는 5년전쯤 핸드폰을 사용했던 시절에 4g = LTE 라고 인식하고 사용했었습니다. 이는 맞는 이야기 일까요? 틀린 이야기일까요? 의견과 그이유를 서술해주세요!
+
+![화면 캡처 2024-02-24 123228](https://github.com/team-imad-study/study-question/assets/136051281/9120d869-8e27-4680-bb9d-fdb754b67ff6)
+
+초기 ITU에선 4G 의표준 자격을 높게 설정해 LTE는 기준미달로 4G로 못불릴뻔 하였지만
+
+![화면 캡처 2024-02-24 123243](https://github.com/team-imad-study/study-question/assets/136051281/bda24ece-b6bd-4ca9-b42c-7386be0b357c)
+
+이후 ITU의 4G 기준 하향과 더불어 LTE의 기술 수준 향상으로 4G로 불릴수 있게됨
+
+### 4G 에는 LTE뿐아니라 WiMAX 등의 다양한 기술이 포함되어있는 개념임 하지만 LTE 또한 전세계적으로 가장 널리 사용되는 4G 기술중 하나이기 때문에 LTE는 4G다 등의 동의어로 사용되어도 상관없음
+
+
+
 ---
 > 작성자 :
 ---
