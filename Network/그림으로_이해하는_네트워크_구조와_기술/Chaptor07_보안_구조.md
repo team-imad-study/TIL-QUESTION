@@ -85,6 +85,7 @@
 
 ## 문제. 전자서명을 사용하는 사례와 그 과정을 설명하시오.
 
+![스크린샷 2024-02-28 오후 5 07 20](https://github.com/team-imad-study/study-question/assets/31721255/c1797f6c-ed8d-45f3-939b-ea8866403980)
 
 
 #### 계약 체결
@@ -111,18 +112,23 @@
 
 1. CSR 생성(certificate signing requset)
 
-[CSR사진]
+<img width="114" alt="스크린샷 2024-02-28 오후 5 21 16" src="https://github.com/team-imad-study/study-question/assets/31721255/2cb129f4-b074-4051-a368-d54a4aa8b304">
+
 - 인증서 발급을 요청하기 위한 파일
 - 개인키 공개키 생성(키체인 접근 앱에 자동으로 추가)
 - 크기는 2048비트 RSA 알고리즘을 사용
 - CSR로 전사 서명 인증서 발급
 
 2. 전사 서명 인증서 발급
-[certificate사진]
+   
+<img width="114" alt="스크린샷 2024-02-28 오후 5 21 22" src="https://github.com/team-imad-study/study-question/assets/31721255/4d79b93b-e200-4b4b-a3a2-d22b5a45dd77">
+
 - 앱스토어에 접속해 certificate 생성
 - 생성 시 만들어둔 CSR로 인증 요청
 - 앱의 용도와 배포 방법을 선택한 후 인증서 생성
-- 생성 받은 인증서 설치 시 
+- 생성 받은 인증서 설치 시
+  
+<img width="441" alt="스크린샷 2024-02-29 오후 1 30 22" src="https://github.com/team-imad-study/study-question/assets/31721255/7d44e1ed-ab70-4f4d-b71b-60fdd3a6c204">
 
 ---
 > 작성자 :
