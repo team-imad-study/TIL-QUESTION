@@ -53,13 +53,13 @@
 ## 컴퓨터구조 - 입문서 (2024.03.05 ~ )
 
 - [1장] 컴퓨터 구조를 알아야 하는 이유
-  - [[DAY1]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter01_컴퓨터_구조를_알아야_하는_이유.md) 20240305
+  - [[DAY1]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter01_컴퓨터_구조를_알아야_하는_이유.md#DAY1) 20240305
 - [2장] 데이터
-  - [[DAY1]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter02_데이터.md) 20240305
+  - [[DAY1]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter02_데이터.md#DAY1) 20240305
 - [3장] 명령어
-  - [[DAY2]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter03_명령어.md) 20240308
+  - [[DAY2]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter03_명령어.md#DAY2) 20240308
 - [4장] CPU의 작동 원리
-  - [[DAY2]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter04_CPU의_작동_원리.md) 20240308
-  - [[DAY3]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter04_CPU의_작동_원리.md) 20240312
+  - [[DAY2]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter04_CPU의_작동_원리.md#DAY2) 20240308
+  - [[DAY3]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter04_CPU의_작동_원리.md#DAY3) 20240312
 - [5장] CPU 성능 향상 기법
-  - [[DAY3]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter05_CPU_성능_향상_기법.md) 20240312
+  - [[DAY3]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter05_CPU_성능_향상_기법.md#DAY3) 20240312
