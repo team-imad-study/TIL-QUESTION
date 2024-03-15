@@ -22,8 +22,8 @@
 
 ### 행렬 곱셈
 
-![Alt text](image-7.png)
-![Alt text](image-8.png)
+![image](https://github.com/team-imad-study/study-question/assets/16646208/92765862-7caf-4075-a42c-d5d1374dd716)
+![image](https://github.com/team-imad-study/study-question/assets/16646208/4aa67042-1994-4dd6-a8c2-389baa80a307)
 
 ```python
 for i in 0..n
