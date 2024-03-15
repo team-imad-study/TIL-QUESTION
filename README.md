@@ -63,3 +63,7 @@
   - [[DAY3]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter04_CPU의_작동_원리.md#DAY3) 20240312
 - [5장] CPU 성능 향상 기법
   - [[DAY3]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter05_CPU_성능_향상_기법.md#DAY3) 20240312
+- [6장] 메모리와 캐시메모리
+  - [[DAY4]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter06_메모리와_캐시메모리.md#Day4) 20240315
+- [7장] 보조기억장치
+  - [[DAY4]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter07_보조기억장치.md#Day4) 20240315
