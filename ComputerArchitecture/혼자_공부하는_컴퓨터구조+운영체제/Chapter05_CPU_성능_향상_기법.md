@@ -110,7 +110,7 @@ let numberOfTasks = 5
 print(Thread.main)
 for i in 1...numberOfTasks {
     concurrntQueue.async {
-        performTask(taskNumber: i)
+        performTask(taskNumber: i) 
     }
 }
 print(Thread.main)
