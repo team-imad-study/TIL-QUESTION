@@ -76,3 +76,13 @@ let quarang = Qurang()
 - 참고 : https://hyunsikwon.github.io/swift/Swift-ARC-03/
 - 참고 : https://dsnight.tistory.com/51
 ---
+
+# DAY5
+작성일 : 2024/03/20
+
+> 범위
+- 01 RAID의 정의와 종류
+
+---
+> 작성자 : 
+---
