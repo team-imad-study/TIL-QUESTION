@@ -67,3 +67,12 @@
   - [[DAY4]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter06_메모리와_캐시메모리.md#Day4) 20240315
 - [7장] 보조기억장치
   - [[DAY4]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter07_보조기억장치.md#Day4) 20240315
+  - [[DAY5]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter07_보조기억장치.md#Day5) 20240320
+- [8장] 
+  - [[DAY5]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter08_입출력장치.md#Day5) 20240320
+
+
+## 운영체제 - 입문서(2024.03.20 ~ )
+- [9장] 
+  - [[DAY1]](./OS/혼자_공부하는_컴퓨터구조+운영체제/Chapter09_운영체제_시작하기.md#Day1) 20240320
+  
