@@ -74,3 +74,13 @@ rm -r 폴더명 : 폴더(디렉토리) 삭제
 - 문제 출처 : https://velog.io/@potter/%EC%BB%A4%EB%A7%A8%EB%93%9C-%EB%9D%BC%EC%9D%B8-Command-Line-Interface
 - 참고 : https://coding-panda.com/cli%EC%9D%98-%EC%9E%A5%EB%8B%A8%EC%A0%90-%EB%B0%8F-gui%EC%99%80-%EC%B0%A8%EC%9D%B4%EC%A0%90/
 ---
+
+# DAY2
+작성일 : 2024/03/29
+
+> 범위
+- 02 운영체제의 큰 그림
+
+---
+> 작성자 : 
+---
