@@ -38,6 +38,9 @@
 - 이럴 경우 모든 프로세스의 조상 프로세스인 `init 프로세스`에게 자식을 입양 시킴
 - init 프로세스는 1의 PID를 가지게 됨
 
+> 예제 코드
+- [[좀비 프로세스]](../../예제%20코드/zombie.c)
+- [[고아 프로세스]](../../예제%20코드/orphan.c)
 
 > 참고
 - https://velog.io/@buna1592/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%A2%80%EB%B9%84-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%99%80-%EA%B3%A0%EC%95%84-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-Zombie-Orphan-Process
