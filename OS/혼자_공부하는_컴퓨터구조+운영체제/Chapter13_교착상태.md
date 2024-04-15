@@ -8,5 +8,31 @@
 ---
 > 작성자 : 
 ---
-> 작성자 :
+
+> 작성자 : NCookie
+
+## 실제 운영체제에서는 어떻게 교착 상태를 해결할까? (Ch13-2)
+
+## 타조 알고리즘
+
+대부분의 운영체제는 교착 상태 발생 시 시스템에 문제가 없는 척을 한다. 교착 상태는 매우 드물게 발생하는 경우이기 때문에, 이에 대한 투자는 교착 상태의 방지 또는 감지 등과 관련된 지속적인 오버헤드 및 시스템 성능 저하로 이어질 수 있다.
+
+만약 문제가 발생했다면 참을성 없는 사용자가 직접 프로세스를 종료하거나 컴퓨터를 재시작한다.
+
+### Windows의 경우
+
+*Windows에는 런타임 시 교착 상태를 확인하도록 특별히 설계된 기본 제공 기능이 없다.* (윈도우 드라이버에서 교착 상태가 일반적으로 발생하므로 드라이버 개발자가 교착 상태 버그를 진단하는데 도움이 되도록 설계된 도구가 있지만, 여전히 최종 사용자 단의 컴퓨터에서 실행되는 것은 아니다.)
+
+Windows에서는 어떤 프로세스들이 교착 상태에 빠졌더라도, 그것이 일시적인 것인지 영구적인 것인지 알 수 있는 방법이 없다. 
+
+그리고 일반적인 Windows 소프트웨어에서는 교착 상태가 매우 드물기 때문에 Windows가 정교한 전략으로 교착 상태를 처리하는 것은 "프로그램 중 하나가 자원을 포기하거나 사용자가 와서 작업을 종료할 때까지 두 스레드를 모두 교착 상태로 두는 것"보다 비생산적이다. 이런 경우에는 그냥 컴퓨터를 다시 시작한다. (블루스크린)
+
+즉, 프로그래머의 실수로 프로그램이 교착 상태에 빠지더라도, 운영체제는 이를 직접 해결하지 않고 최종 사용자에게 판단을 맡긴다. 
+
+## 참고
+
+- [How does Windows deal with deadlocks?](https://www.quora.com/How-does-Windows-deal-with-deadlocks)
+- [Which algorithm is used in Windows to come over a deadlock?](https://www.quora.com/unanswered/Which-algorithm-is-used-in-Windows-to-come-over-a-deadlock)
+- [Deadlock Detection - Windwos Drivers](https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/deadlock-detection)
+
 ---
