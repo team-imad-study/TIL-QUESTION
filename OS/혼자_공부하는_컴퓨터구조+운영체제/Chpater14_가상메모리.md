@@ -69,11 +69,13 @@
 # Q. 다음 두 개의 그림을 보고 어떠한 페이지 교체 알고리즘을 사용하였는지 맞추시오
 
 # 1
-![alt text](image.png)
+![image](https://github.com/team-imad-study/study-question/assets/108323826/7884edbe-b5b9-4a1f-900f-670199f5d999)
+
 
 
 # 2
-![alt text](image-1.png)
+![image](https://github.com/team-imad-study/study-question/assets/108323826/8a7fe9cb-d56f-4587-8e6c-e75d4a663308)
+
 
 
 # 정답
