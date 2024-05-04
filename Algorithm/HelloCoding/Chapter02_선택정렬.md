@@ -11,7 +11,7 @@
 > 풀이자 : NCookie
 
 https://www.acmicpc.net/problem/2750
-
+## 출제자 : KUN
 ### 코드
 
 ```javascript
@@ -99,6 +99,11 @@ const selectionSort = (input) => {
 해당코드의 두번째 함수부분이다 이함수에선 정렬된 배열을 출력하기위해 sortedArr 이라는 배열을 빈배열로 하나 만들어내고 
 루프문을 돌며 각스탭마다 실행된 첫번째함수의 출력값을 sortedArr에 하나씩 추가하여준다.
 
+## 풀이자 : NCookie
+
+### 코드
+
+### 풀이
 ---
 
 ## [28116번] 선택 정렬의 이동 거리
@@ -108,6 +113,7 @@ const selectionSort = (input) => {
 
 https://www.acmicpc.net/problem/28116
 
+## 출제자 : NCookie
 ### 코드
 
 ```java
@@ -247,7 +253,11 @@ for (int i = 1; i <= N; i++) {
 
 System.out.println(sb);
 ```
+## 풀이자 : KUN
 
+### 코드
+
+### 풀이
 ---
 
 > 출제자 : Quarang </br>
@@ -257,19 +267,7 @@ System.out.println(sb);
 
 https://www.acmicpc.net/problem/23882
 
-### 코드
-
-### 풀이
-
----
-
-> 출제자 : PCYSB </br>
-> 풀이자 : Quarang
-
-## [23883번 알고리즘 수업] - 선택 정렬 3
-
-https://www.acmicpc.net/problem/23883
-
+## 출제자 : Quarang
 ### 코드
 ```swift
 var input = readLine()!.split(separator: " ").map{Int($0)!}
@@ -309,7 +307,7 @@ selectSort()
 ```
 1. 배열의 길이가 하나일 경우 -1을 출력하고 시작
 2. 배열은 가장 마지막부터 정렬하여 루프를 시작함으로 인덱스 길이 -1부터 0까지 루프 시작 
-3. 해당 배열의 마지막 인덱스를 제외한 그 앞 요소들 중에서 가장 큰 수를 j에 저장
+3. 해당 배열의 마지막 인덱스를 제외한 그 앞 요소들 중에서 `가장 큰 수를 j`에 저장
 4. i의 요소와 j의 요소를 비교하여 j가 더 클 경우 스왑하고 end값을 1 증가 시킴
 5. 루프 반복 중 입력받은 input과 end가 같을 경우 해당 배열의 상태를 출력하고 함수에서 break
 6. 루프가 다 돌 때까지 input과 end가 바뀌지 않았다면, -1을 출력
@@ -320,6 +318,87 @@ selectSort()
 ```swift
 let j = array.firstIndex(of: array[0..<i].max
 ```
-이 코드는 해당 스코프의 0부터 인덱스 길이(0~n-1)만큼 배열을 만들고 그 값 중에 가장 큰값을 찾아야하기 때문에 최악의 경우인 O(N)의 시간 복잡도를 가짐
+이 코드는 해당 스코프의 0부터 인덱스 길이`(0~n-1)`만큼 배열을 만들고 그 값 중에 가장 큰값을 찾아야하기 때문에 최악의 경우인 `O(N)`의 시간 복잡도를 가짐
 
-그래서 배열의 길이 N번 중 한번에 N의 시간이 걸리기 때문에 O(N^2)의 시간 복잡도를 가짐
+그래서 배열의 길이 N번 중 한번에 N의 시간이 걸리기 때문에 `O(N^2)`의 시간 복잡도를 가짐
+
+## 풀이자 : PCYSB
+
+### 코드
+
+### 풀이
+
+---
+
+> 출제자 : PCYSB </br>
+> 풀이자 : Quarang
+
+## [23883번 알고리즘 수업] - 선택 정렬 3
+
+https://www.acmicpc.net/problem/23883
+
+## 출제자 : PCYSB
+
+### 코드
+
+### 풀이 
+
+## 풀이자 : Quarang
+### 코드
+```swift
+let input = readLine()!.split(separator: " ").map { Int($0)! }  
+var array = readLine()!.split(separator: " ").map { Int($0)! }  
+let sortedArray = array.sorted()   
+var dic = [Int: Int]()                                   
+array.enumerated().forEach{ dic[$1] = $0 }
+
+var cnt = 0
+for i in stride(from: input[0]-1, through: 0, by: -1) {
+    if array[i] != sortedArray[i] {
+        let temp = (array[i], sortedArray[i])
+        array.swapAt(i, dic[sortedArray[i]]!)
+                                                                
+        let tmp = dic[temp.0]
+        dic[temp.0] = dic[temp.1]
+        dic[temp.1] = tmp
+        
+        cnt += 1
+        if input[1] == cnt {
+            print("\(temp.0) \(temp.1)")
+            break
+        }
+    }
+}
+if cnt < input[1]{
+    print(-1)
+}
+
+```
+### 풀이
+```
+해당 문제는 선택정렬 중 특정 횟수에 따른 배열의 교환 요소를 출력하는 문제
+
+배열의 범위는 N(5 ≤ N ≤ 500,000)으로 표현 가능한 길이 자체가 길기 때문에 O(N^2)정도의 시간복잡도를 가지면 시간초과가 발생함으로
+해당 문제는 O(N) 혹은 O(N logN)으로 풀이 가능
+```
+
+1. 딕셔너리와 입력받은 배열,입력값에 대한 정렬한 배열을 준비한다.
+2. 딕셔너리에는 입력받은 배열의 값은 `key`로, 배열의 요소는 `value`로 저장함
+3. 이 문제는 배열의 마지막 부분부터 정렬하며 값을 변경함으로, 배열의 마지막 인덱스부터 처음까지 루프를 돌림
+4. 루프에서 인덱스를 가지고 정렬배열과 입력배열을 비교하여 값이 다를시 스왑 이벤트를 실행 시킴
+5. 값이 다른 순간, 원래 그 자리에 정렬되어야할 값을 찾음(여기서 딕셔너리를 사용하는데, 그 이유는 `정렬되어야할 값을 알고 있기에 그 값이 존재하는 인덱스를 알 수 있기 때문`)
+6. 그렇게 요소의 인덱스를 서로 추출하여 서로 바꿈
+7. 다음조건을 만족하기 위해 딕셔너리도 똑같이 바꿔줌
+8. 만약 입력받은 수와 현재 스왑한 횟수가 일치할 경우 적은수를 먼저 출력하고 루프를 탈출
+
+**키포인트**
+
+해당 배열에서 교환할 인덱스를 색출하는 과정
+```swift
+array.swapAt(i, dic[sortedArray[i]]!)
+```
+사전에 만들어 둔 딕셔너리를 활용하여 요소의 키를 가진 값을 바로 출력하여 항상 `O(1)`의 시간복잠도를 가진다는 장점이 있음
+
+하지만 `sorted()` 함수를 사용했기 때문에, 기존 알고리즘의 시간복잡도보다 높은 시간을 가진 알고리즘이 된 단점이 있음.
+
+이것은 따로 보완할 필요가 있음
