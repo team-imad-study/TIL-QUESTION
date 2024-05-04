@@ -271,5 +271,55 @@ https://www.acmicpc.net/problem/23882
 https://www.acmicpc.net/problem/23883
 
 ### 코드
+```swift
+var input = readLine()!.split(separator: " ").map{Int($0)!}
+var array = readLine()!.split(separator: " ").map{Int($0)!}
 
+func selectSort(){
+    let count = input[0]
+    var end = 0
+    guard count > 1 else {
+        print(-1)
+        return
+    }
+    for i in stride(from: count-1, to: 0, by: -1){
+        let j = array.firstIndex(of: array[0..<i].max()!)!
+        if array[i] < array[j]{
+            array.swapAt(i, j)
+            end += 1
+            if end == input[1]{
+                print(array.map{String($0)}.joined(separator: " "))
+                return
+            }
+        }
+    }
+    if end < input[1]{
+        print(-1)
+        return
+    }
+}
+
+selectSort()
+```
 ### 풀이
+```
+해당 문제는 선택정렬 중 특정 횟수에 배열 상태를 출력하는 문제
+
+배열의 범위는 N(5 ≤ N ≤ 10,000)으로 표현 가능한 길이 자체가 짧기 때문에 O(N^2)정도의 시간복잡도를 가져도 풀이 가능
+```
+1. 배열의 길이가 하나일 경우 -1을 출력하고 시작
+2. 배열은 가장 마지막부터 정렬하여 루프를 시작함으로 인덱스 길이 -1부터 0까지 루프 시작 
+3. 해당 배열의 마지막 인덱스를 제외한 그 앞 요소들 중에서 가장 큰 수를 j에 저장
+4. i의 요소와 j의 요소를 비교하여 j가 더 클 경우 스왑하고 end값을 1 증가 시킴
+5. 루프 반복 중 입력받은 input과 end가 같을 경우 해당 배열의 상태를 출력하고 함수에서 break
+6. 루프가 다 돌 때까지 input과 end가 바뀌지 않았다면, -1을 출력
+
+**키포인트**
+
+반복문을 하나를 사용했지만, 배열 요소 중 가장 큰값을 색출하는 식
+```swift
+let j = array.firstIndex(of: array[0..<i].max
+```
+이 코드는 해당 스코프의 0부터 인덱스 길이(0~n-1)만큼 배열을 만들고 그 값 중에 가장 큰값을 찾아야하기 때문에 최악의 경우인 O(N)의 시간 복잡도를 가짐
+
+그래서 배열의 길이 N번 중 한번에 N의 시간이 걸리기 때문에 O(N^2)의 시간 복잡도를 가짐
