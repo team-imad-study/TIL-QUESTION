@@ -14,7 +14,90 @@ https://www.acmicpc.net/problem/2750
 
 ### 코드
 
+```javascript
+const readline = require("readline");
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+let input = [];
+
+rl.on("line", function(line) {
+    input.push(parseInt(line));
+}).on("close", function() {
+    input.shift(); // 첫 번째 요소를 제거
+    const sortedArr = selectionSort(input); // 정렬된 배열을 반환
+    sortedArr.forEach(item => console.log(item)); // 정렬된 배열을 한 줄씩 출력
+});
+
+const findSmallest = (input) => {
+    let smallest = input[0];
+    let smallestIndex = 0;
+    for (let i = 1; i < input.length; i++) {
+        if (input[i] < smallest) {
+            smallest = input[i];
+            smallestIndex = i;
+        }
+    }
+    return smallestIndex;
+};
+
+const selectionSort = (input) => {
+    const sortedArr = [];
+    const inputLength = input.length;
+    for (let i = 0; i < inputLength; i++) {
+        const smallestIndex = findSmallest(input);
+        sortedArr.push(input.splice(smallestIndex, 1)[0]);
+    }
+    return sortedArr;
+};
+
+```
+
 ### 풀이
+
+입력의 첫번째 요소는 배열의 총 길이로써 정렬에 필요없는 요소이기에 
+
+```javascript
+input.shift(); // 첫 번째 요소를 제거
+```
+해당코드를 사용해 지워준다. 배열을 사용하는 많은 문제들이 첫번째요소로 이러한 총길이를 주는경우가 많으니 다음에도 다시 사용할것!
+
+간단한 문제이기에 설명할거리가 별로없지만 순서대로 따라가면서 알아보자면 
+
+```javascript
+const findSmallest = (input) => {
+    let smallest = input[0];
+    let smallestIndex = 0;
+    for (let i = 1; i < input.length; i++) {
+        if (input[i] < smallest) {
+            smallest = input[i];
+            smallestIndex = i;
+        }
+    }
+    return smallestIndex;
+};
+```
+
+해당코드의 첫번째 함수부분이다 이함수에선 smallest 즉 최소값과 smallistIndex 최소값의 인덱스 값을 각각 0번째요소와 0으로 초기설정을 해주고있다 
+그후 반복되는 루프문에선 루프를 돌며 input의 i번째요소와 smallest 를 비교해 해당스텝의 smallest값보다 작다면 
+smallest 값과 smallestIndex를 재설정해준다 그리고 smallestIndex값을 출력해준다.
+
+```javascript
+const selectionSort = (input) => {
+    const sortedArr = [];
+    const inputLength = input.length;
+    for (let i = 0; i < inputLength; i++) {
+        const smallestIndex = findSmallest(input);
+        sortedArr.push(input.splice(smallestIndex, 1)[0]);
+    }
+    return sortedArr;
+};
+```
+해당코드의 두번째 함수부분이다 이함수에선 정렬된 배열을 출력하기위해 sortedArr 이라는 배열을 빈배열로 하나 만들어내고 
+루프문을 돌며 각스탭마다 실행된 첫번째함수의 출력값을 sortedArr에 하나씩 추가하여준다.
 
 ---
 
