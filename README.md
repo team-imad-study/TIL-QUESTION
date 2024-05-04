@@ -72,7 +72,7 @@
   - [[DAY5]](./ComputerArchitecture/혼자_공부하는_컴퓨터구조+운영체제/Chapter08_입출력장치.md#Day5) 20240320
 
 
-## 운영체제 - 입문서(2024.03.20 ~ 2024.04.19)
+## 운영체제 - 입문서 (2024.03.20 ~ 2024.04.19)
 - [9장] 
   - [[DAY1]](./OS/혼자_공부하는_컴퓨터구조+운영체제/Chapter09_운영체제_시작하기.md#Day1) 20240320
   - [[DAY2]](./OS/혼자_공부하는_컴퓨터구조+운영체제/Chapter09_운영체제_시작하기.md#Day2) 20240329
@@ -92,9 +92,14 @@
 
 ## 알고리즘 - 입문서 (2024.04.29 ~ )
 
-- [[2장] 선택 정렬 (DAY 1)](./Algorithm/HelloCoding/Chapter02_선택정렬.md)
+- [[2장] 선택 정렬](./Algorithm/HelloCoding/Chapter02_선택정렬.md)
   - [[2750번] 수 정렬하기](./Algorithm/HelloCoding/Chapter02_선택정렬.md#2750번-수-정렬하기)
   - [[28116번] 선택 정렬의 이동 거리](./Algorithm/HelloCoding/Chapter02_선택정렬.md#28116번-선택-정렬의-이동-거리)
   - [[23882번] 알고리즘 수업 - 선택 정렬 2](./Algorithm/HelloCoding/Chapter02_선택정렬.md#23882번-알고리즘-수업---선택-정렬-2)
   - [[23883번] 알고리즘 수업 - 선택 정렬 3](./Algorithm/HelloCoding/Chapter02_선택정렬.md#23883번-알고리즘-수업---선택-정렬-3)
-
+- [[3장] 재귀](./Algorithm/HelloCoding/Chapter03_재귀.md)
+  - [[2748번] 피보나치 수 2](./Algorithm/HelloCoding/Chapter03_재귀.md#2748번-피보나치-수-2)
+  - [[4779번] 칸토어 집합](./Algorithm/HelloCoding/Chapter03_재귀.md#4779번-칸토어-집합)
+  - [
+[17478번] 재귀함수가 뭔가요?
+](./Algorithm/HelloCoding/Chapter03_재귀.md#17478번-재귀함수가-뭔가요)
