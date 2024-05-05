@@ -101,7 +101,52 @@ const selectionSort = (input) => {
 
 ### 코드
 
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+
+        int n = Integer.parseInt(br.readLine());
+        int[] arr = new int[n];
+
+        for (int i = 0 ; i < n; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
+        }
+
+        // 선택 정렬
+        for (int i = 0; i < n; i++) {
+            int minIndex = i;
+            for (int j = i; j < n; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
+                }
+            }
+
+            int tmp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = tmp;
+
+            sb.append(arr[i]).append("\n");
+        }
+
+        System.out.println(sb);
+    }
+}
+```
+
 ### 풀이
+
+첫 번째 줄에서 n을 받고, n번만큼 루프를 돌며 입력 데이터를 읽어온다.
+
+이후 입력 데이터가 저장된 배열을 선택 정렬을 사용해 오름차순으로 정렬한다. 선택 정렬은 주어진 리스트에서 최소값을 찾고, 이를 맨 앞에 위치한 값을 교체하는 것을 반복하는 제자리 정렬 알고리즘 중 하나이다.
+
+이를 구현하기 위해 2중 for문을 사용했으며, 따라서 위 프로그램의 시간복잡도는 $O(n^2)$이다.
+
 ---
 
 # [28116번] 선택 정렬의 이동 거리
