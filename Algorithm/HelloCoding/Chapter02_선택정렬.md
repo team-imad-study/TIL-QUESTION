@@ -374,8 +374,49 @@ let j = array.firstIndex(of: array[0..<i].max
 ## 풀이자 : PCYSB
 
 ### 코드
+```java
+fun main() {
+    val br = BufferedReader(InputStreamReader(System.`in`))
+    var (n, k) = br.readLine().split(' ').map { it.toInt() } //배열의 크기 n, 교환 번째
+    val arr = br.readLine().split(' ').map { it.toInt() }.toIntArray() // 배열
+
+    for (i in n - 1 downTo 1) {
+        var max = i
+        for (j in i - 1 downTo 0) {
+            if (arr[max] < arr[j]) {
+                max = j //가장 큰 수가 있는 인덱스
+            }
+        }
+        if (arr[max] != arr[i]) {
+            val temp = arr[i] //
+            arr[i] = arr[max] // 가장 큰 수가 들어가야 하는 곳
+            arr[max] = temp //
+            if (--k == 0) {
+                println(arr.joinToString(" "))
+                return
+            }
+        }
+    }
+    println(-1)
+}
+```
 
 ### 풀이
+> N개의 서로 다른 양의 정수가 저장된 배열 A
+> 선택 정렬로 배열 A를 오름차순 정렬할 경우 K 번 교환이 발생한 직후의 배열 A를 출력해야 하는 문제
+
+**입력**
+첫째 줄에 배열 A의 크기, 교환 횟수
+다음 줄에 서로 다른 배열 A의 원소를 입력한다.
+A의 크기 N(5<=N <= 10000), 교환 횟수 K(1<=K<=N)
+
+1. 배열의 크기 n과 교환 번째 k를 입력 받는다. 
+2. 배열의 요소를 입력 받는다.
+3. 배열의 가장 마지막 부분 부터 처음 +1 까지 i, 가장 마지막 부분 - 1 부터 처음까지 j
+4. i의 요소와 j의 요소를 비교하여 가장 큰 수가 있는 값을 변수에 저장한다.
+5. j가 마지막까지 돌은 후 i인덱스와 가장 큰 수가 있는 max 변수를 교환(기존 가장 큰 수 j의 자리에는 i의 요소가 들어간다.)
+6. 이를 반복하며 교환 횟수 k를 1씩 줄여나간다.
+7. k가 0이 될 시 현재의 배열을 출력, 또는 k가 되기전에 교환이 끝난다면 -1을 출력한다.
 
 ---
 
