@@ -100,6 +100,5 @@
 - [[3장] 재귀](./Algorithm/HelloCoding/Chapter03_재귀.md)
   - [[2748번] 피보나치 수 2](./Algorithm/HelloCoding/Chapter03_재귀.md#2748번-피보나치-수-2)
   - [[4779번] 칸토어 집합](./Algorithm/HelloCoding/Chapter03_재귀.md#4779번-칸토어-집합)
-  - [
-[17478번] 재귀함수가 뭔가요?
-](./Algorithm/HelloCoding/Chapter03_재귀.md#17478번-재귀함수가-뭔가요)
+  - [[17478번] 재귀함수가 뭔가요?](./Algorithm/HelloCoding/Chapter03_재귀.md#17478번-재귀함수가-뭔가요)
+  - [[25501번] 재귀의 귀재](./Algorithm/HelloCoding/Chapter03_재귀.md#25501번-재귀의-귀재)
