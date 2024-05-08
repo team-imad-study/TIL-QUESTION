@@ -374,8 +374,49 @@ let j = array.firstIndex(of: array[0..<i].max
 ## 풀이자 : PCYSB
 
 ### 코드
+```java
+fun main() {
+    val br = BufferedReader(InputStreamReader(System.`in`))
+    var (n, k) = br.readLine().split(' ').map { it.toInt() } //배열의 크기 n, 교환 번째
+    val arr = br.readLine().split(' ').map { it.toInt() }.toIntArray() // 배열
+
+    for (i in n - 1 downTo 1) {
+        var max = i
+        for (j in i - 1 downTo 0) {
+            if (arr[max] < arr[j]) {
+                max = j //가장 큰 수가 있는 인덱스
+            }
+        }
+        if (arr[max] != arr[i]) {
+            val temp = arr[i] //
+            arr[i] = arr[max] // 가장 큰 수가 들어가야 하는 곳
+            arr[max] = temp //
+            if (--k == 0) {
+                println(arr.joinToString(" "))
+                return
+            }
+        }
+    }
+    println(-1)
+}
+```
 
 ### 풀이
+> N개의 서로 다른 양의 정수가 저장된 배열 A
+> 선택 정렬로 배열 A를 오름차순 정렬할 경우 K 번 교환이 발생한 직후의 배열 A를 출력해야 하는 문제
+
+**입력**
+첫째 줄에 배열 A의 크기, 교환 횟수
+다음 줄에 서로 다른 배열 A의 원소를 입력한다.
+A의 크기 N(5<=N <= 10000), 교환 횟수 K(1<=K<=N)
+
+1. 배열의 크기 n과 교환 번째 k를 입력 받는다. 
+2. 배열의 요소를 입력 받는다.
+3. 배열의 가장 마지막 부분 부터 처음 +1 까지 i, 가장 마지막 부분 - 1 부터 처음까지 j
+4. i의 요소와 j의 요소를 비교하여 가장 큰 수가 있는 값을 변수에 저장한다.
+5. j가 마지막까지 돌은 후 i인덱스와 가장 큰 수가 있는 max 변수를 교환(기존 가장 큰 수 j의 자리에는 i의 요소가 들어간다.)
+6. 이를 반복하며 교환 횟수 k를 1씩 줄여나간다.
+7. k가 0이 될 시 현재의 배열을 출력, 또는 k가 되기전에 교환이 끝난다면 -1을 출력한다.
 
 ---
 
@@ -389,8 +430,53 @@ https://www.acmicpc.net/problem/23883
 ## 출제자 : PCYSB
 
 ### 코드
+```java
+fun main() {
+    var (n, k) = readLine()!!.split(' ').map { it.toInt() } // 배열 크기 n, 교환 횟수 k
+    val li = readLine()!!.split(' ').map { it.toInt() }.toMutableList() //입력 받은 배열
+    val sortedLi = li.sorted() // 원래 배열은 놔두고 정렬된 새 배열 생성
+
+    val d = mutableMapOf<Int, Int>()
+    li.forEachIndexed { index, value -> d[value] = index } // 기존값 저장
+
+
+    for (i in n - 1 downTo 0) { // 기존, 변경값 배열값 비교
+        if (sortedLi[i] != li[i]) { //
+            val temp = listOf(li[i], sortedLi[i])
+            li[i] = temp[1] // temp로만 해결 x 바뀐수가 또 바뀔경우는 비교가 불 가능 하기에 바뀐 수는 li[i]에 입력(현재 인덱스에 넣음)
+            li[d[sortedLi[i]]!!] = temp[0] // 
+            d[temp[0]] = d[temp[1]]!!.also { d[temp[1]] = d[temp[0]]!! }
+
+            if (--k == 0) {
+                println(temp.joinToString(" "))
+                return
+            }
+        }
+    }
+    println(-1)
+}
+```
 
 ### 풀이 
+> N개의 서로 다른 양의 정수가 저장된 배열 A를 선택 정렬로 오름차순 정렬할 경우 K 번째 교환되는 수를 구하는 문제
+
+**입력**
+첫째 줄에 배열 A의 크기 N, 교환 횟수 K를 입력한다. (5<=N<=500,000), (1<=K<=N)
+
+**출력**
+K 번째 교환되는 두 개의 수를 작은 수부터 한 줄에 출력한다. 교환 횟수가 K 보다 작으면 -1을 출력한다.
+
+1. 배열 크기 N과 교환 횟수 K를 한 줄에 입력 받는다.
+2. 배열의 요소를 한 줄에 입력받는다.
+3. 기존의 배열을 정렬한 변수 sortedLi와 기존의 배열을 똑같이 복사한 map을 만든다.(map에는 요소를 key값으로 가지고, index를 value로 가진다.)
+4. 뒤에서부터 0번 인덱스 까지 정렬된 배열과 정렬되지 않은 배열을 비교하며 반복 한다.
+5. temp라는 변수에 정렬되지 않은 배열과, 정렬된 배열을 할당한다.
+6. 정렬되지 않은 배열에 정렬된 배열의 요소를 할당한다.
+7. map에 저장된 인덱스와 값을 활용하여 바뀐 부분의 인덱스를 변경한다.
+8. 정렬된 배열과 정렬되지 않은 배열의 값을 활용하여 map의 값도 동일하게 변경해준다.
+9. 해당 for 문을 돌때마다 k의 값을 1씩 줄여나가며 0이 될 시 반환한다.
+10. 만약 k가 0이 되지 않았는데 for문이 종료될 경우 -1을 반환한다.
+
 
 ## 풀이자 : Quarang
 
