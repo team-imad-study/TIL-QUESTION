@@ -3,9 +3,9 @@
 
 ---
 
-# [2748번] 피보나치 수 2
+# [10870] 피보나치 수 2
 
-https://www.acmicpc.net/problem/2748
+https://www.acmicpc.net/problem/10870
 
 > 출제자 : KUN </br>
 > 풀이자 : PCYSB
@@ -13,8 +13,47 @@ https://www.acmicpc.net/problem/2748
 ## 출제자 : KUN
 
 ### 코드
+```javascript
+const readline= require("readline");
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+let input: number;
+
+rl.on("line", function(line){
+    input = parseInt(line);
+}).on("close", function(){
+    const result = fibo(input);
+  console.log(result);
+})
+
+const fibo = (input: number): number => {
+  if (input == 0) {
+    return 0;
+  } else if (input == 1) {
+    return 1;
+  } else {
+    return fibo(input - 1) + fibo(input - 2);
+  }
+};
+```
+
 
 ### 풀이
+간단한 피보나치 수열을 구하는 문제이다. 
+입력값으로 n을 입력받는데 이 n으로 n 번째의 피보나치 수열에 대입되는 값을 구해내면된다. n의범위는 0 =< n =< 20 이다.
+
+해당문제에 이미 피보나치 수열을 구하는 식이 있기에 어렵지않게 접근할수 있다.
+Fn = Fn-1 + Fn-2 (n ≥ 2) 이식을 코드로 구현하기 위해 재귀 함수를 사용했고 
+
+input 으로 n 을 받아내 n 이 0이나 1이 될때까지 해당식을 반복하면 n에 대입되는 피보나치 수열의 값을 알아낼수있다. 
+물론 처음 문제를 보았을때는 이해가 잘안되었으나 그림을 그리면서 이해를 하게되었다.
+![피보나치수열 재귀함수 설명](https://github.com/team-imad-study/study-question/assets/136051281/2b1ed839-a06d-4031-9645-f9cb40f74a60)
+
+물론 반복되는 식계산이기에 for 문으로도 구현 할 수 있는 문제 이지만 재귀함수를 배운 챕터이기에 재귀함수로 구현한것이다.
+
 
 ## 풀이자 : PCYSB
 
@@ -289,5 +328,82 @@ https://www.acmicpc.net/problem/25501
 ## 풀이자 : KUN
 
 ### 코드
+```javascript
+const readline = require("readline");
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+let input: string[] = []; // 입력값을 저장할 배열 선언
+
+rl.on("line", function (line: any) {
+  input.push(line.trim());
+}).on("close", function () {
+  input.shift(); // 첫 번째 요소를 제거
+  const answer = act(input);
+  answer.forEach((item) => console.log(item));
+});
+let cnt = 0; // 전역변수로 카운터 추가
+const act = (input: string[]) => {
+  const answer: any[] = [];
+  for (let i = 0; i < input.length; i++) {
+    answer.push(`${isPalindrome(input[i])} ${cnt}`); // 출력기준과 맞추기위해 isPalindrome 의 결과와 cnt를 문자열로 바꿔 한요소로 저장 
+  }
+  return answer;
+};
+
+const isPalindrome = (s: string) => {
+  return recusion(s, 0, s.length - 1);
+};
+
+const recusion = (s: string, l: number, r: number): any => {
+  if (l === 0) {
+    cnt = 0; //카운터 초기화 
+  }
+  cnt++; //카운터 증가
+
+  if (l >= r) {
+    return 1;
+  } else if (s[l] !== s[r]) {
+    return 0;
+  } else {
+    return recusion(s, l + 1, r - 1);
+  }
+};
+```
+
 
 ### 풀이
+팰린드롬 문자열이란 앞에서부터 읽었을때와 뒤에서부터 읽었을 때가 같은 문자열을 말한다. 예) tenet , level
+이문제는 문제에서 이미 펠린드롬 문자열인지 아닌지를 1 과 0으로 나타내주는 함수를 알려주었다. 
+문제에 첨부된 코드) 
+```c
+#include <stdio.h>
+#include <string.h>
+
+int recursion(const char *s, int l, int r){
+    if(l >= r) return 1;
+    else if(s[l] != s[r]) return 0;
+    else return recursion(s, l+1, r-1);
+}
+
+int isPalindrome(const char *s){
+    return recursion(s, 0, strlen(s)-1);
+}
+
+int main(){
+    printf("ABBA: %d\n", isPalindrome("ABBA")); // 1
+    printf("ABC: %d\n", isPalindrome("ABC"));   // 0
+}
+```
+우리가 해야될것은 출력 기준인 팰린드롬 문자열인지 확인한 결과 1 or 0(한칸빈칸) 재귀함수의 호출횟수 
+를 만들어내기위해 저함수를 자신의 언어로 컨버트하는것과 재귀함수쪽에 카운터를 하나 만들어 달아주는것이다.
+일단 전역변수로 cnt 라는 변수를 하나 추가해주었다. 
+그리고 위코드를 내가쓰고있는 언어인 TYPESCRIPT 로 컨버트 해주고 recursion 함수 쪽에 재귀의 첫입력인 i === 0 인것을 확인하고 맞다면 카운터를 초기화 해주었다. 
+그리고 i !== 0 인 다른경우엔 재귀함수가 진행중인 것이니 cnt++ 로 카운터 증가를 구현해주었다. 
+
+그리고 출력을 하기위해 act 함수에서 answer 배열을 만들어주고 for 문으로 input[i] 를 isPalindrome 함수에 집어넣어줌과 동시에 cnt를 받아와 문자열로써 (isPalindrome(input[i])의결과)(띄어쓰기 한칸)(카운터의수) 를 한줄의 문자열로 저장해주었다. 
+그리고 이것을 한줄씩 출력하게 되면 올바른 출력값이 나오게된다.
+
