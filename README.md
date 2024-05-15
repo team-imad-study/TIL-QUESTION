@@ -103,7 +103,7 @@
   - [[17478번] 재귀함수가 뭔가요?](./Algorithm/HelloCoding/Chapter02_재귀.md#17478번-재귀함수가-뭔가요)
   - [[25501번] 재귀의 귀재](./Algorithm/HelloCoding/Chapter02_재귀.md#25501번-재귀의-귀재)
 - [[3장] 퀵정렬](./Algorithm/HelloCoding/Chapter02_재귀.md)
-  - [[16678번] 모독](./Algorithm/HelloCoding/Chapter03_퀵정렬.md#16678-모독)
   - [[2751번] 수 정렬하기 2](./Algorithm/HelloCoding/Chapter03_퀵정렬.md#2751-수-정렬하기-2)
+  - [[16678번] 모독](./Algorithm/HelloCoding/Chapter03_퀵정렬.md#16678-모독)
   - [[24090번] 퀵 정렬 1](./Algorithm/HelloCoding/Chapter03_퀵정렬.md#24090-퀵-정렬-1)
   - [[24092번] 퀵 정렬 2](./Algorithm/HelloCoding/Chapter03_퀵정렬.md#24092-퀵-정렬-3)
