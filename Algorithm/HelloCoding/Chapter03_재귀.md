@@ -372,8 +372,57 @@ https://www.acmicpc.net/problem/25501
 
 ### 코드
 
-### 풀이
+```java
+lateinit var result: Array<String>
 
+fun main() {
+    val n = readLine()!!.toInt() // 입력 받을 배열의 수
+    result = Array<String>(n, { " " })
+    val arr = Array(n, { " " })
+    for (i in 0 until n) {
+        arr[i] = readLine().toString()
+    }
+    palindrome(arr)
+}
+
+// 배열의 요소만큼 재귀 함수로 보내버림
+fun palindrome(arr: Array<String>) {
+    for (i in 0 until arr.size) {
+        recursion(arr[i], 0, arr[i].length - 1, i, 1)
+    }
+
+}
+
+// 배열의 요소 s, 문자열의 0번째 요소, 문자열의 끝요소 r, 인덱스 i, 재귀 횟수
+fun recursion(s: String, l: Int, r: Int, i: Int, c: Int) {
+    if (l >= r) {
+        result[i] = "1 $c"
+        println(result[i])
+        return
+    } else if (s[l] != s[r]) {
+        result[i] = "0 $c"
+        println(result[i])
+        return
+    } else {
+        recursion(s, l + 1, r - 1, i, c + 1)
+    }
+}
+```
+
+### 풀이
+> 어떤 문자열이 팰린드롬이라면 1, 아니라면 0을 반환하고 해당 여부를 문제에 제공된 함수에서 몇 번이나 호출 되는지를 구하는 문제
+
+**입력**
+첫째줄 테스트 케이스의 개수 T(1<=T<=1000)
+둘째 줄 T개의 줄에 알파벳 대문자로 구성된 문자열 S (1<=S<=1000)
+
+1. 문제에서 말한 팰린드롬을 구하는 함수와 같은 역할을 하는 함수들을 만든다.
+- 해당 함수는 문자열의 0번째와 마지막 번째의 요소를 비교하며 +1, -1씩 증가 감소하며 재귀를 한다.
+- 첫 번째 함수에서는 배열을 받는 함수를 만든다. 배열의 사이즈는 T, 첫 번째 함수에서는 0 ~ T-1 번째 까지의 문자열, 0, 문자열의 길이-1, 재귀횟수(1)을 넣어 recursion 함수를 호출한다.
+- 두 번째 함수 recursion에서 첫번 째 if문에서는 문자열의 0번째와 마지막 번째 숫자를 비교(1씩 증가, 감소 하며 숫자가 같아질 때까지 재귀한다.) 같아진다면 1과 재귀횟수를 출력한다.
+- 두 번째 else if 문에서는 0번째와 마지막 문자열 요소를 비교하여 맞지 않다면 0과 재귀 횟수를 출력한다.
+- 세 번째 else 문에서는 (문자열, 0번째 인덱스 +1, 마지막 인덱스 -1, 재귀횟수 +1)을 하여 재귀 한다.
+- 해당 부분이 if, else if에 걸릴 때까지 재귀 한다.
 ## 풀이자 : KUN
 
 ### 코드
