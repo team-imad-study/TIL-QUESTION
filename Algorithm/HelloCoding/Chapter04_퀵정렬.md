@@ -98,7 +98,48 @@ public class Main {
 ## 풀이자 : KUN
 
 ### 코드
+```javascript
+const readline = require("readline");
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+let input: number[] = []; // 입력값을 저장할 배열 선언
+
+rl.on("line", function (line: any) {
+  input.push(parseInt(line));
+}).on("close", function () {
+  input.shift();
+
+  console.log(solution(input));
+});
+
+const solution = (input: number[]) => {
+  return input.sort((a, b) => a - b).join(`\n`);
+};
+```
+
 ### 풀이
+퀵정렬을 사용하지만 않았다면 정말 간단한 문제였다. 하지만 본코드에서도 볼 수 있듯이 난 결국 퀵정렬로 이문제를 푸는데 실패하였다. 
+
+일단 이문제는 단순 퀵정렬로 풀려고하면 무조건 타임오버가 뜨도록 설계가 되어있다 이유는 
+일단 들어오는 n 입력의 자릿수가 백만 이며 들어오는 입력중 단순 퀵정렬의 최악의 경우의 수인 이미 정렬되어있는 배열이나 역순 내림차순으로 정렬이 되어있는경우 시간 복잡도가 n제곱이 되며 타임오버가 난다. 
+이를 해결하기위해 제출자에게도 힌트를 얻은결과로는 이미정렬되어있거나 역순정렬인 퀵정렬 저격의 배열을 타파하기위해 
+1. 입력받은 배열을 랜덤으로 한번섞는다. (저격배열방지)
+2. 퀵정렬의 피벗값을 배열의 중앙값 혹은 랜덤 방식으로 선택하여 진행한다.
+3. 2중 피벗 퀵정렬이나 입력받은 배열이 일정 n개를 초과할시 다른 정렬알고리즘을 사용한다 예) 합정렬
+
+이러한 방법들을 이용해 문제에 접근할수있지만 나는 2번방법까지 사용하고도 시간초과가 났다. 
+
+예상하기로는 방법은 옳았으나 입력받은 배열을 랜덤으로 섞을때 sort 를 사용하거나 sort 를 사용하지않아도 
+언어자체로 시간이 꽤나 소요가 되는것같다. 
+
+그리고  윗코드처럼 sort로써 계산된 배열을 바로바로 출력하지않으면 
+출력하는 출력부에서마져 정렬이 완료된 배열을 한줄씩 출력하기 위해서 for문을 한번더 돌려야하는점등을 뽑을수 있을겄같다. 
+
+제출자에게 똥쓰래기 언어의 한계라는 말을듣고 시무룩해진 하루였다.
 
 ---
 
@@ -112,7 +153,55 @@ https://www.acmicpc.net/problem/16678
 ## 출제자 : KUN
 
 ### 코드
+```javascript
+const readline = require("readline");
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+let input: number[] = []; // 입력값을 저장할 배열 선언
+
+rl.on("line", function (line: any) {
+  input.push(parseInt(line));
+}).on("close", function () {
+  input.shift();
+  input.sort((a, b) => a - b); //오름차순 정렬
+  const answer = act(input);
+  console.log(answer);
+});
+
+let Jaina = 0;
+
+const act = (input: number[]) => {
+  if (input[0] != 1) {
+    Jaina += input[0] - 1;
+    input[0] = 1;
+  }
+
+  for (let i = 1; i < input.length; i++) {
+    if (input[i] > input[i - 1]) {
+      Jaina += input[i] - input[i - 1] - 1;
+      input[i] = input[i - 1] + 1;
+    }
+  }
+  return Jaina;
+};
+```
 ### 풀이
+일단 이문제를 이해하는데는 그렇게 어렵진 않았다. 문제지문이 길어서 그렇지 그렇게까지 난해한 설명은 아니었다고 생각한다. 
+문제를 요약을 해보면 왕이 한번만 Defile 을 사용해 모든 국회의원을 없애고 싶어하고 이를 위해 최소한으로 필요한 해커 제이나의 수를 출력해주면 된다. 
+이를 조건으로 바꿔서 생각하면
+1. 입력받은 배열은 오름차순으로 정렬되어야만한다.
+2. 모든 국회의원이 단 한번의 Defile로 전원탈락하기 위해선 배열의 최솟값은 1이여야 한다.
+3. 모든 국회의원이 단 한번의 Defile로 전원탈락하기 위해선 배열이 오름차순으로 진행중일때 요소끼리의 차가 1 이 나거나 같은값이여야 한다.
+이러한 조건을 충족시키는 루프문을 만들어 루프를 돌며 필요한 제이나의 수를 카운트 해주면된다.
+그래서 코드를 차례차례 살펴 보자면
+1. 입력받은 배열을 sort 함수를 이용해 오름차순 정렬을 해주고
+2. 정렬된 배열을 act 함수에 집어넣어 배열의 첫인덱스 = 최솟값이 1인지 확인을 한다음 만약 1이 아니라면 차이값을 구하여 jaina 카운트에 더해주고 배열의 첫인덱스를 1로 바꾸어 준다.
+3. 첫자리는 1이기에 인덱스 1번부터 루프를 돌며 현인덱스(i) 와 전인덱스 (i - 1) 을 비교해 그차이값만큼 jaina 카운터에 더해준다.
+4. 루프가 끝이나면 jaina 카운터를 리턴한다.  
 
 ## 풀이자 : NCookie
 
