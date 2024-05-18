@@ -193,12 +193,12 @@ for remainder, count in distribution.items():
 
 # [프로그래머스] 폰켓몬
 
-> 출제자 : KNU </br>
+> 출제자 : KUN </br>
 > 풀이자 : Quarang
 
 https://school.programmers.co.kr/learn/courses/30/lessons/1845
 
-## 출제자 : KNU
+## 출제자 : KUN
 
 ## 풀이자 : Quarang
 
@@ -207,10 +207,10 @@ https://school.programmers.co.kr/learn/courses/30/lessons/1845
 # [프로그래머스] 베스트앨범
 
 > 출제자 : Quarang </br>
-> 풀이자 : KNU
+> 풀이자 : KUN
 
 https://school.programmers.co.kr/learn/courses/30/lessons/42579
 
 ## 출제자 : Quarang
 
-## 풀이자 : KNU
+## 풀이자 : KUN
