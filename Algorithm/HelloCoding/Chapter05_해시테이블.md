@@ -12,6 +12,42 @@ https://www.acmicpc.net/problem/1764
 
 ## 출제자 : PCYSB
 
+### 코드
+
+```java
+fun main() {
+    val (N, M) = readLine()!!.split(' ').map { it.toInt() }
+
+    val mapA = mutableMapOf<String, String>()
+    val mapB = mutableMapOf<String, String>()
+
+    for (i in 0 until N+M){
+        val r = readLine()!!.toString()
+        if (i < N){
+            mapA["$r"] = r
+        }else{
+            mapB["$r"] = r
+        }
+
+    }
+
+    val commonKey = mapA.keys.intersect(mapB.keys).sorted()
+    println(commonKey.size)
+    commonKey.forEachIndexed { index, s ->
+        println(s)
+    }
+
+}
+
+```
+
+### 풀이
+1. N과 M을 입력받는다.
+2. N+M만큼 이름을 입력 받는데 i가 N보다 작을 경우에는 mapA에 key값으로 이름 value로 이름을 입력
+3. 그렇지 않을 경우에는 key값에 이름 value 값으로 이름을 입력 받는다.
+4. 두 개의 map에서 같은 key를 가지고 있는 공통 값만을 찾음과 동시에 정렬한다.
+5. 해당 리스트의 크기를 출력 하고 이어서 순서대로 공통 값을 출력한다.
+
 ## 풀이자 : NCookie
 
 ### 코드 (1)
@@ -186,8 +222,46 @@ for remainder, count in distribution.items():
 
 
 ## 풀이자 : PCYSB
+### 코드
 
+```java
+fun main() {
+    val (N, M, A) = readLine()!!.split(' ').map { it.toInt() }
+    val H = readLine()!!.toInt() //모든 요소를 합치고 M으로 나누었을 때 나와야 하는 수
 
+    var answer = 1L
+
+    for(i in 0 until N-1){
+        answer = (answer * M)%1000000007
+    }
+    println(answer)
+}
+```
+### 풀이
+문제가 너무 복잡하여 알아보기 쉽게 아래와 같이 표시하였다.
+배열 P의 사이즈는 N, 모든 원소는 M-1 이하의 값을 가진다. M은 나누는 수 이면서 원소의 값의 제한 이다. (0 <= 원소 < M) 해당 원소의 값을 더하고 M으로 나누었을 경우 해시값 H가 나오는 경우의 수를 구하는 문제이다.
+
+예제)
+3 2 1
+1
+
+p[p0, p1, p2 ] -> 여기서 p에 들어갈 수 있는 원소의 값은 0, 1 // M이 2니까
+
+h(p)[p0 + (p1 * A^1) + (p2 * A^2)] mod M = H
+
+h(p) = [(0, 1) + ((0, 1) * 1) + ((0, 1) * 1)] mod 2 = 1 -> 해당 원소들의 합을 2로 나누었을 때 1이 나오는 경우를 출력하면 된다.
+
+해당 경우를 살펴 보면 h(p)의 값은 0 ~ M-1 중에 하나이다. (0부터 이기에 총 M개, M으로 나누고 남은 숫자가 최소한 한 개는 있어야 되기 때문에)
+
+그리고 배열 P의 경우에 배열의 크기가 N 만큼을 가진다. (N만큼 크기를 가진 배열의 각각의 번째마다 M개 만큼의 요소를 가질 수 있다.)
+
+때문에 P 배열에서 나올 수 있는 경우의 수는 M^N 만큼이 있다. 
+
+우리가 구해야 하는 해시값을 갖는 비밀번호의 개수는 mod 연산이 끝난 후의 값이다. 
+
+여기서 어떤 요소들이 들어오고 그 요소의 합의 나머지는 항상 동일한 개수가 나온다.
+
+그렇기 때문에 해당 부분에서는 M^N/M = M^N-1 라는 공식이 성립된다.
 
 ---
 
