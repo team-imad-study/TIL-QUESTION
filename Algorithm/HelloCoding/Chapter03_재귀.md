@@ -3,7 +3,7 @@
 
 ---
 
-# [10870] 피보나치 수 2
+# [백준][10870] 피보나치 수 2
 
 https://www.acmicpc.net/problem/10870
 
@@ -93,7 +93,7 @@ fun main() {
 
 ---
 
-# [4779번] 칸토어 집합
+# [백준][4779번] 칸토어 집합
 
 https://www.acmicpc.net/problem/4779
 
@@ -207,7 +207,7 @@ while let line = readLine(), let num = Double(line) {  print(cantor(num: num)) }
 
 ---
 
-# [17478번] 재귀함수가 뭔가요?
+# [백준][17478번] 재귀함수가 뭔가요?
 
 https://www.acmicpc.net/problem/17478
 
@@ -342,7 +342,7 @@ public class Main {
 
 ---
 
-# [25501번] 재귀의 귀재
+# [백준][25501번] 재귀의 귀재
 
 > 출제자 : PCYSB </br>
 > 풀이자 : KUN

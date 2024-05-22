@@ -3,7 +3,7 @@
 
 ---
 
-# [2751] 수 정렬하기 2
+# [백준][2751번] 수 정렬하기 2
 
 https://www.acmicpc.net/problem/2751
 
@@ -143,7 +143,7 @@ const solution = (input: number[]) => {
 
 ---
 
-# [16678] 모독
+# [백준][16678번] 모독
 
 https://www.acmicpc.net/problem/16678
 
@@ -307,7 +307,7 @@ public class Main {
 
 ---
 
-# [24090] 알고리즘 수업 - 퀵 정렬 1
+# [백준][24090번] 알고리즘 수업 - 퀵 정렬 1
 
 https://www.acmicpc.net/submit/24090
 
@@ -388,7 +388,7 @@ func partition(array: inout [Int], p: Int, r: Int) -> Int {
 
 ---
 
-# [24092] 알고리즘 수업 - 퀵 정렬 3
+# [백준][24092번] 알고리즘 수업 - 퀵 정렬 3
 
 https://www.acmicpc.net/submit/24092
 
