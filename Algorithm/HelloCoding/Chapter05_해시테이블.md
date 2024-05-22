@@ -276,6 +276,49 @@ https://school.programmers.co.kr/learn/courses/30/lessons/1845
 
 ## 풀이자 : Quarang
 
+### 코드(1)
+
+```swift
+func ponkemon(_ nums:[Int]) -> Int{
+    let select = nums.count/2
+    let nums = Set(nums)
+    return nums.count > select ? select : nums.count
+}
+```
+
+### 풀이(1)
+
+```
+해당 문제는 해시로 푸는 문제지만 성능과 효율성을 따졌을때 사용할 필요가 없다고 느껴 Set를 사용하여 풀이 진행
+Set를 하는 작업은 배열의 각 요소를 집합에 추가해야함으로 O(N)의 시간복잡도를 가짐
+```
+
+1. 입력 받은 배열 전체 갯수의 절반의 수를 초과하면 안되기 때문에 데려갈 수 있는 폰켓몬의 최대값을 설정
+2. 입력 받은 폰켓몬 고유번호의 중복값을 없애 자시 저장, 이때 `Set`를 사용
+3. 만약 입력 받은 폰켓몬 고유번호의 갯수가 최대 데려갈 수 있는 폰켓몬 수보다 많을 경우 최대 수를 출력하고, 아닐 경우 고유 번호 수를 출력
+
+### 코드(2)
+
+```swift
+func ponkemon(_ nums:[Int]) -> Int{
+    let select = nums.count/2
+    var dict = [Int:Int]()
+    nums.forEach { num in
+        dict[num,default: 0] += 1
+    }
+    return dict.count > select ? select : dict.count
+}
+```
+
+### 풀이(2)
+
+만약 해시로 꼭 구현해야한다면, 별반 다를 부분은 없음
+마찬가지로 Set를 사용하지는 않지만 forEach문을 입력받은 배열 길이 갯수만큼 돌리니 전 문제와 같이 O(N)의 시간복잡도를 가짐
+
+해시(딕셔너리)도 중복을 제거하는 특징이 있어서 같은 방법으로 값을을 분리 시킨뒤 전체 크기 갯수로 비교하여 
+값을 출력하면 끝
+
+
 ---
 
 # [프로그래머스] 베스트앨범
@@ -286,5 +329,61 @@ https://school.programmers.co.kr/learn/courses/30/lessons/1845
 https://school.programmers.co.kr/learn/courses/30/lessons/42579
 
 ## 출제자 : Quarang
+
+### 코드
+
+```swift
+import Foundation
+
+func solution(_ genres:[String], _ plays:[Int]) -> [Int] {
+    
+    var genreDict = [String:[(index:Int,play:Int)]]()
+    
+    genres.enumerated().forEach{ (index,genre) in
+        genreDict[genre , default : []].append((index,plays[index]))
+    }
+    
+    var sortedTupleArr = [(index:[Int],sum:Int)]()
+    genreDict.forEach { (_,index) in
+        let sorted = index.sorted{ $1.play < $0.play}
+        let sum = sorted.map{$0.play}.reduce(0, +)
+        sortedTupleArr.append((sorted.prefix(2).map{$0.index},sum))
+    }
+    return sortedTupleArr.sorted{ $0.sum > $1.sum}.flatMap{$0.index}
+}
+```
+
+### 풀이
+
+```
+해당 문제는 두가지의 배열의 요소로 특정 규칙을 만족하도록 값을 출력해야하는 문제다.
+딕셔너리(해시)를 생성한 뒤 해시에 값을 추가하는 과정에서 딕셔너리의 전체 길이의 루프를 돌며, 정렬함수를 쓰기 때문에 결론적으로 이 문제의 총 시간 복잡도는 O(N)이라고 할 수 있다.
+```
+
+이 문제의 미 포인트는 `해시 안에 튜플`을 사용했다는 점이다.
+1. 해시의 키를 `String`, 값을 `(Int,Int)`타입의 튜플형태로 초기화 하여 변수 생성
+2. `enumerated()`를 사용하여 장르 필터와 인덱스 값으로 루프를 돌려 딕셔너리에 genre를 키로, (index,plays)를 값으로 저장함 그럼 다음과 같은 결과가 나옴
+
+**입력값**
+|genres|plays|return|
+|---|---|---|
+|["classic", "pop", "classic", "classic", "pop"]|[500, 600, 150, 800, 2500]	|[4, 1, 3, 0]|
+
+**반환값**
+```
+["classic": [(index: 0, play: 500), (index: 2, play: 150), (index: 3, play: 800)], "pop": [(index: 1, play: 600), (index: 4, play: 2500)]]
+```
+
+3. 이 다음은 해당 조건대로 정렬하고 값을 변형하여 주는 작업임
+```
+1. 속한 노래가 많이 재생된 장르를 먼저 수록합니다.
+2. 장르 내에서 많이 재생된 노래를 먼저 수록합니다.
+```
+4. 위 조건의 만족하기 위해 play값 기준으로 오름차순으로 정렬함
+5. 그리고 plays의 합계를 계산
+6. 정렬 된 plays 배열에서 가장 많이 플레이된 앞부분 수 두개를 잘라서 합계값을 같이 튜플 형태로 딕셔너리에 저장
+
+그렇게 되면 촐 플레이 횟수를 따져서 값을 정렬할 수 있게 됨
+
 
 ## 풀이자 : KUN
