@@ -240,8 +240,58 @@ https://www.acmicpc.net/problem/2606
 ## 풀이자 : Quarang
 
 ### 코드
+```swift
+let num = Int(readLine()!)!     //7
+    let pairs = Int(readLine()!)!       //6
+    var graph = [[Int]](repeating: [], count: num + 1)      //
+    var visited = [Bool](repeating: false, count: num + 1)      //
+
+    (0..<pairs).forEach{ _ in
+        let input = readLine()!.split(separator: " ").map { Int($0)! }
+        graph[input[0]].append(input[1])
+        graph[input[1]].append(input[0])
+    }
+    
+    func bfs(start: Int) {
+        var queue = [start]     
+        var index = 0
+        visited[start] = true
+        
+        while queue.count > index {
+            for nextNode in graph[queue[index]] {
+                if !visited[nextNode] {
+                    visited[nextNode] = true
+                    queue.append(nextNode)
+                }
+            }
+            index += 1
+        }
+    }
+    bfs(start: 1)
+    print(visited.filter { $0 }.count - 1)
+```
 
 ### 풀이
+
+```
+해당 문제는 그래프의 노드와 간선갯수를 입력받고 데이터를 입력받아 그래프를 만든 뒤에
+1번과 연결된 모든 노드의 갯수를 출력하는 문제(단 1번은 제외하고)
+풀이 방법은 너비우선 탐색알고리즘(BFS)을 사용했고, 시간복잡도는 O(V+E)가 나오게 된다.
+```
+
+> 힌트
+- 여기서 차별화된 점은 항상 노드들은 1...N형태라는 것임
+- 그말은 즉, 딕셔너리를 사용해서 해당 값들의 키를 따로 지정해주지 않아도 index로 배열을 사용할 수 있다는 것임.(항상 1씩 차이나는 배열이 index값을 대신하여 사용할 수 있다는 이점 존재)
+
+> 과정
+
+1. 문제 처럼 값을 모두 입력 받음
+2. 입력받은 데이터들을 그래프형태로 만드는 과정을 통해 특정 요소와 같은 index에 연결된 데이터들을 모두 저장
+3. 그럼 그래프의 해당 인덱스값을 가진 그래프의 요소안에는 해당 요소와 연결된 다른 요소들이 저장되게 됨 ( ex)[[2,5][1,2,3,5]] )
+4. 문제의 기준은 1번어기 때문에 1을 가진채로 bfs함수를 진행 시킴
+5. 한번 조회한 값을 visited함수에 저장 시키며 요소들을 모두 검색해 결국 더이상 검색할 수 없을때까지(1이 연결된 모든 노드를 찾을 때까지)계속 탐섹을 진행
+6. 마지막까지 방문되지 않은 visited배열의 요소를 제외한 상태로 갯수를 새서 -1을 하여 출력
+7. -1은 1번 요소도 포함되어있기 때문
 
 ---
 
@@ -256,8 +306,56 @@ https://school.programmers.co.kr/learn/courses/30/lessons/43163
 ## 출제자 : Quarang
 
 ### 코드
-
+```swift
+func solution(_ begin:String, _ target:String, _ words:[String]) -> Int {
+    
+    func bfs() -> Int {
+        var queue = [begin]
+        var compare = [begin]
+        var count = 0
+        while !queue.isEmpty {
+            let size = queue.count
+            let node = queue.removeLast()
+            guard node != target else{ return count }
+            
+            (0..<size).forEach { _ in
+                words.forEach { word in
+                    var diff = 0
+                    zip(node, word).forEach { if $0 != $1 { diff += 1 } }  //글자 수 비교 1개의 글자가 다를때까지
+                    if diff == 1 && !compare.contains(word){ //글자가 한개가 다르거나 임시 저장배열에 현재 배열이 존재하지 않을 경우
+                        queue.append(word)  //큐에 현재 데이터 추가
+                        compare.append(word)    //임시저장 배열에 현재 데이터 추가
+                    }
+                }
+            }
+            count += 1  //횟수 추가
+        }
+        return 0
+    }
+    return bfs()
+}
+```
 ### 풀이
+
+```
+해당 문제는 시작글자에서 타겟글자까지 한글자씩 변형시켜서 총 단계별로 1글자 씩만 변화한 횟수를 출력하는 문제다.
+만약 한번도 변환하지 못했다면 0을 출력한다.
+풀이 방법은 너비우선 탐색알고리즘(BFS)을 사용했고, 시간복잡도는 O(V+E)가 나오게 된다.
+```
+
+> 구현과정
+
+1. bfs함수를 생성
+2. 함수의 루프를 실행시키기 위한 실질적 `큐`를 생성하고 시작값을 추가
+3. 큐는 값이 가변적임으로 지금까지 검사한 값을 저장할 compare변수를 생성 시작값을 추가
+4. 큐가 완전히 비어있을때까지 루프는 돌아감
+5. 큐의 사이즈와 큐의 가장 마지막 요소를 추출
+6. 만약 노드가 타겟이랑 같을 경우 사전에 준비한 count(횟수) 변수 반환
+7. 0부터 큐의 사이즈까지 루프 돌림
+8. 입력 받은 배열을 하나씩 돌려 해당 요소의 값이 추출한 값과 1개의 글자갯수 차이가 나고 저장배열에 현재배열이 존재하지 않을 경우 큐와 비교배열에 해당 글자를 추가
+9. 마지막으로 count를 1개 증가 시킴
+
+위 과정의 반복문을 반복할 경우 횟수가 계산되어 출력됨
 
 ## 풀이자 : KUN
 
