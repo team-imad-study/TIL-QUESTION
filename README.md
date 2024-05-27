@@ -117,3 +117,8 @@
   - [[백준][1697번] 숨바꼭질](./Algorithm/HelloCoding/Chapter06_너비우선탐색.md#1697번-숨바꼭질)
   - [[백준][2606번] 바이러스](./Algorithm/HelloCoding/Chapter06_너비우선탐색.md#2606번-바이러스)
   - [[프로그래머스][43163번] 단어변환](./Algorithm/HelloCoding/Chapter06_너비우선탐색.md#43163번-단어변환)
+- [[6장] 깊이 우선 탐색](./Algorithm/HelloCoding/Chapter06_깊이우선탐색.md)
+  - [[프로그래머스][84021번] 퍼즐 조각 채우기](./Algorithm/HelloCoding/Chapter06_깊이우선탐색.md#프로그래머스84021번-퍼즐-조각-채우기)
+  - [[프로그래머스][87946번] 피로도](./Algorithm/HelloCoding/Chapter06_깊이우선탐색.md#프로그래머스87946번-피로도)
+  - [[프로그래머스][43164번] 여행경로](./Algorithm/HelloCoding/Chapter06_깊이우선탐색.md#프로그래머스43164번-여행경로)
+  - [[프로그래머스][42839번] 소수 찾기](./Algorithm/HelloCoding/Chapter06_깊이우선탐색.md#프로그래머스42839번-소수-찾기)
