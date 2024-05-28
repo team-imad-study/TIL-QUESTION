@@ -219,8 +219,71 @@ public class Main {
 ## 풀이자 : PCYSB
 
 ### 코드
+```java
+fun main() {
+    val (N, K) = readLine()!!.split(' ').map { it.toInt() }
+    println(bfs(N, K))
+}
+
+private fun bfs(N: Int, K: Int): Int {
+    val visited = BooleanArray(100001) // 방문 여부 기록 배열, 0~10만까지 사용가능
+    val queue = LinkedList<Pair<Int, Int>>() //탐색큐
+    queue.add(Pair(N, 0)); visited[N] = true //시작 위치와 소요 시간을 큐에 추가, 방문 기록 추가
+
+    // 큐가 비어있지 않은 동안 탐색
+    while (queue.isNotEmpty()) {
+        val (point, time) = queue.poll() // 큐에서 현재 위치와 소요 시간을 꺼냄, 첫 위치는 N
+        if (point == K) return time //현재 위치가 K인 경우 소요 시간 반환후 종료
+
+        //현재 위치에서 +1 만큼 이동 가능한지와 +1 거리의 방문여부 체크후 이동
+        if (checkRange(point + 1) && !visited[point + 1]) {
+            queue.add(Pair(point + 1, time + 1)); visited[point + 1] = true
+        }
+
+        //현재 위치에서 -1 만큼 이동 가능한지와 -1 거리의 방문여부 체크후 이동
+        if (checkRange(point - 1) && !visited[point - 1]) {
+            queue.add(Pair(point - 1, time + 1)); visited[point - 1] = true
+        }
+
+        //현재 위치에서 *2 만큼 이동 가능한지와 *2 거리의 방문여부 체크후 이동
+        if (checkRange(point * 2) && !visited[point * 2]) {
+            queue.add(Pair(point * 2, time + 1)); visited[point * 2] = true
+        }
+    }
+    return -1
+}
+
+private fun checkRange(x: Int) = x in 0..100000 //x의 범위가 0~십만까지의 범위에 있는지를 확인
+```
 
 ### 풀이
+수빈의 위치는 N, 동생의 위치는 K
+수빈이는 위치가 X일 때 걷는다면 1초 후에 X-1, X+1로 이동
+순간이동시에는 1초 후에 2*X의 위치로 이동
+
+해당 코드에 1과 3이 입력되었다고 가정하였을 때
+
+1. 
+queue: [(1, 0)]
+point = 1, time = 0
+가능한 이동, 2, 0 2
+
+queue.add(Pair(2, 1)) 
+visited[2] = true
+
+2.
+queue: [(2, 1)]
+point = 2, time = 1
+가능한 이동, 3, 4
+
+queue.add(Pair(3, 2))
+queue.add(Pair(4, 2))
+
+3.
+queue: [(3, 2), (4, 2)]
+point = 3, time = 2
+
+끝 시간을 반환한다.
 
 ---
 
