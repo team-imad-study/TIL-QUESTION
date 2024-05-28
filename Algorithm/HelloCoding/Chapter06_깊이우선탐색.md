@@ -535,5 +535,75 @@ https://school.programmers.co.kr/learn/courses/30/lessons/42839
 ## 풀이자 : PCYSB
 
 ### 코드
+```java
+class Solution {
+    var answer = 0 // answerSet에 들어있는 요소중 소수인 값만 카운팅
+    var answerSet = mutableSetOf<Int>() // 저장된 모든 조합들
+    
+    fun solution(numbers: String): Int {
+        var list = numbers.toCharArray()
+        
+        list.forEachIndexed { index, c ->
+            dfs(c.toString(), list.filterIndexed {i, _ -> index != i})
+        }
+        
+        answerSet.forEach {
+            answerCount(it)
+        }
+        
+        return answer
+    }
+    
+    fun dfs(numbers: String, list: List<Char>){
+        answerSet.add(numbers.toInt())
+        if(list.isEmpty()) return //리스트가 비어있을 경우 재귀 탈출
+        
+        //들어온 숫자와 리스트의 인덱스 0번째를 붙이고, 붙인 해당 번째는 보내지 않는다.
+        list.forEachIndexed { index, c ->
+            dfs("$numbers$c", list.filterIndexed {i, _ -> index != i})
+        }
+    }
+    
+    fun answerCount(n: Int){
+        if(n > 1 && (2 until n).none{n%it == 0}){
+            answer++
+        }
+    }
+}
+
+```
 
 ### 풀이
+1. 입력을 문자열의 형식으로 받기 때문에 해당 문자열을 변수 하나를 만들어 Char형 배열로 바꾸어 준다.
+
+2. 해당 변수에서 0번째 인덱스 부터 마지막 인덱스까지 하나씩 넣어주고, 나머지 숫자들을 리스트 형태로 넣어 dfs 함수에 넣어준다.
+
+3. 해당 dfs 함수에서 재귀 하여 가능한 조합의 모든 숫자를 Set 컬렉션에 넣어준다.
+
+4. Set 컬렉션에서 소수인지 아닌지 확인하는 for문을 돌린다.
+
+5. 결과값을 반환한다.
+
+예시)
+해당 코드에 "134"라는 문자열이 들어올 시 아래와 같은 결과로 작동 될 것이다.
+
+
+```java
+        list.forEachIndexed { index, c ->
+            dfs(c.toString, list.filterIndexed {i, _ -> index != i})
+        }
+```
+1. [1, 34]
+2. [3, 14]
+3. [4, 13]
+
+```java
+        list.forEachIndexed { index, c ->
+            dfs("$numbers$c", list.filterIndexed {i, _ -> index ! = i})
+        }
+```
+1. answer.add(1)
+1-2. answer.add(13)
+1-3. answer.add(134) //여기서는 리스트가 비어있기 때문에 return 되고
+1-4. answer.add(14) //여기부터 다시 [1, 34]를 받은 부분에서 [14, 3]으로 넘어가게 된다.
+1-5. answer.add(143)
