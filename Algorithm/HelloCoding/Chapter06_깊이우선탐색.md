@@ -514,8 +514,54 @@ https://school.programmers.co.kr/learn/courses/30/lessons/43164
 ## 풀이자 : Quarang
 
 ### 코드
+```swift
+func solution(_ tickets:[[String]]) -> [String] {
+    let tickets = tickets.sorted {$0[1] < $1[1]}
+    var visited = [Bool](repeating: false, count: tickets.count)
+    var route = [String]()
+    
+    func dfs(_ start:String){
+        guard route.count != tickets.count else{
+            route.append(start)
+            return
+        }
+        for i in 0..<tickets.count{
+            if tickets[i][0] == start,!visited[i]{
+                visited[i] = true
+                route.append(start)
+                dfs(tickets[i][1])
+                if route.count == tickets.count + 1{ return }
+                route.removeLast()
+                visited[i] = false
+            }
+        }
+    }
+    
+    dfs("ICN")
+    return route
+}
+
+print(solution([["ICN", "SFO"], ["ICN", "ATL"], ["SFO", "ATL"], ["ATL", "ICN"], ["ATL","SFO"]]))
+```
 
 ### 풀이
+```
+해당 문제는 고정적인 한 노드로 시작해서 입력받은 배열을 모두 소진해 최적의 경로를 찾는 알고리즘
+문제 특성 상 모든 노드끼리의 이동을 검색해야함으로 DFS로 구현
+시간복잡도는 O(V+E)
+```
+> 과정
+1. 티켓은 도착지를 기준으로 알파벳 순서가 앞인 도착지를 우선적으로 검색함으로 도착지를 기준으로 정렬을 하고 시작
+2. 방문함을 기록할 bool 배열 선언
+3. 실질적으로 여행 경로를 저장할 루트 배열 선언
+4. dfs함수 실행
+    4 - 1. 결과 배열의 수와 입력받은 티켓수가 같을 때 재개하고 아닐 경우 루트를 추가하며 재귀를 종료
+    4 - 2. 티켓갯수만큼 루프를 돌리며, dfs함수에 들어온 시작값과 현재 티켓의 출발지가 같을 때와 방문한적이 없을 때 조건 이벤트 실행
+    4 - 3. 방문처리를 하고 결과 배열에 출발지를 저장하고 dfs함수 실행
+    4 - 4. 만약 결과 배열의 길이와 입력 배열의 길이 + 1이 같을 경우 재귀를 종료
+    4 - 5. 만약 결과를 찾지 못했음을 데뷔해서 `백트래킹`을 사용해 이전 재귀를 다른 값으로 실행 시킬 수 있도록 함
+5. 모든 과정이 끝나고 결과 배열을 출력
+
 
 ---
 
@@ -529,8 +575,63 @@ https://school.programmers.co.kr/learn/courses/30/lessons/42839
 ## 출제자 : Quarang
 
 ### 코드
+```swift
+import Foundation
+
+func solution(_ numbers:String) -> Int {
+   
+    var numbers = numbers.map{String($0)}
+    var numArr = [String]()
+    
+    //조합의 수 함수
+    func combin(numbers:[String],num:String){
+        if num != ""{ numArr.append(num)}
+        for i in 0..<numbers.count{
+            var numbers = numbers
+            let node = numbers.remove(at: i)
+            combin(numbers: numbers, num: num + node)
+        }
+        
+    }
+    //소수 찾기
+    func isPrime(num:Int) -> Bool{
+        guard num > 1 else{return false}
+        for i in 2...Int(sqrt(Double(num))){
+            if num % i == 0{ return false }
+        }
+        return true
+    }
+    
+    combin(numbers: numbers, num: "")
+    
+    
+    
+    return Set(numArr.compactMap{Int($0)}).filter{isPrime(num: $0)}.count
+}
+```
 
 ### 풀이
+```
+해당 문제는 입력받은 문자열의 문자들로 만들 수 있는 소수의 갯수를 출력하는 문제
+문제 특성 상 모든 노드를 검색해야함으로 DFS로 구현
+시간복잡도는 O(V+E)
+```
+
+> 과정
+1. 입력받은 문자열을 문자단위로 쪼개고, 정수로 변환해 정수형 배열로 변환
+2. 결과를 저장할 문자열 배열 생성
+3. 소수를 찾는 함수 실행
+    3 - 1. 해당 수가 2 이상일때만 실행(아닌 경우는 무조건 소수이기 때문)
+    3 - 2. 2부터 입력수의 루트값까지 루프 실행(이 과정으로 루프횟수를 감소할 수 있음)
+    3 - 3. 만약 루프의 i로 입력값을 나눴을 때 0이 나올경우는 소수가 아님
+    3 - 4. 루프를 모두 실행 시켰는데도 별다른 이벤트가 없었다면 소수임을 확인하고 true반환
+4. dfs함수 실행
+    4 - 1. 입력값이 비어있다면 결과 배열에 추가
+    4 - 2. 문자열 배열 파라미터의 길이 만큼 루프 실행
+    4 - 3. 파라미터 배열 중 i번째 인덱스를 가진 요소를 삭제하여 node에 저장
+    4 - 4. 추출한 노드와 이전 노트를 합쳐 dfs함수 반복
+5. 위 과정을 거치면 입력받은 값으로 만들 수 있는 모든 수가 담긴 결과 배열이 만들어짐
+6. 만들어진 모든 결과들을 (3)번의 과정을 거쳐 소수를 걸러낸 후 그 배열의 길이를 출력
 
 ## 풀이자 : PCYSB
 

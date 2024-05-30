@@ -217,7 +217,6 @@ https://www.acmicpc.net/problem/17478
 ## 출제자 : Quarang
 
 ### 코드
-### 코드
 ```swift
 var count = Int(readLine()!)!
 
