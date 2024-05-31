@@ -437,8 +437,172 @@ static private boolean compareBlocks(List<Point> emptyBlock, List<Point> puzzleB
 ## 풀이자 : KUN
 
 ### 코드
+```javascript
+function solution(game_board, table) {
+  const n = game_board.length; //세로
+  const m = game_board[0].length; //가로
+  let blanks = []; //빈칸저장
+  let blocks = []; //블록저장
+  const move = [
+    [-1, 0],
+    [1, 0],
+    [0, -1],
+    [0, 1],
+  ]; // 상하좌우 이동시 이동량
+
+  const setBlock = (block) => {
+    // 각각 얻어낸 block 의 값들은 모양은 같아도 절대값 좌표가 다르기에
+    let minX = Math.min(...block.map((v) => v[0])); // block 요소들중 최소 x값
+    let minY = Math.min(...block.map((v) => v[1])); // block 요소들중 최소 y값 을 구해내
+
+    return block.map((v) => [v[0] - minX, v[1] - minY]).sort(); // 블록에서 빼내어 최대한 [0][0] 에 붙여준다
+  };
+
+  const bfsForBlanks = (start, game_board) => {
+    //빈칸을 구하기위한 bfs
+    let queue = start;
+    let block = [];
+    while (queue.length > 0) {
+      let [column, row] = queue.shift(); // 큐한개 가져오기
+      block.push([column, row]); // block에 좌표 추가
+
+      for (let [c, r] of move) {
+        // 새로 이동한 위치 변경
+        let newColumn = column + c;
+        let newRow = row + r;
+        if (
+          newColumn >= 0 && // 새로운 세로 값이 0보다 클때
+          newColumn < n && // 새로운 세로 값이 세로 최댓값인 n 보다 작을때
+          newRow >= 0 && // 새로운 가로 값이 0보다 클때
+          newRow < m && // 새로운 가로 값이 가로 최댓값인 m 보다 작을때
+          game_board[newColumn][newRow] === 0 // 새로 구성한 세로 가로 의 좌표값이 1이 아닌 0일때
+        ) {
+          queue.push([newColumn, newRow]); // 큐에 새로운 좌표 추가
+          game_board[newColumn][newRow] = 1; // 방문 처리
+        }
+      }
+    }
+    return setBlock(block);
+  };
+
+  const bfsForBlocks = (start, table) => {
+    // 블록을 구하기 위한 bfs
+    let queue = start;
+    let block = [];
+    while (queue.length > 0) {
+      let [column, row] = queue.shift(); // 큐한개 가져오기
+      block.push([column, row]); // block에 좌표 추가
+
+      for (let [c, r] of move) {
+        // 새로 이동한 위치 변경
+        let newColumn = column + c;
+        let newRow = row + r;
+        if (
+          newColumn >= 0 && // 새로운 세로 값이 0보다 클때
+          newColumn < n && // 새로운 세로 값이 세로 최댓값인 n 보다 작을때
+          newRow >= 0 && // 새로운 가로 값이 0보다 클때
+          newRow < m && // 새로운 가로 값이 가로 최댓값인 m 보다 작을때
+          table[newColumn][newRow] === 1 // 새로 구성한 세로 가로 의 좌표값이 0이 아닌 1일때
+        ) {
+          queue.push([newColumn, newRow]); // 큐에 새로운 좌표 추가
+          table[newColumn][newRow] = 0; // 방문 처리
+        }
+      }
+    }
+    return setBlock(block);
+  };
+
+  const rotate90 = (block) => {
+    return block.map(([x, y]) => [-y, x]);
+  };
+
+  const rotate180 = (block) => {
+    return block.map(([x, y]) => [-x, -y]);
+  };
+
+  const rotate270 = (block) => {
+    return block.map(([x, y]) => [y, -x]);
+  };
+
+  const getAllRotations = (block) => {
+    return [
+      setBlock(block), // 0도 회전
+      setBlock(rotate90(block)), // 90도 회전
+      setBlock(rotate180(block)), // 180도 회전
+      setBlock(rotate270(block)), // 270도 회전
+    ];
+  };
+  for (let i = 0; i < game_board.length; i++) {
+    for (let j = 0; j < game_board.length; j++) {
+      if (game_board[i][j] === 0) {
+        game_board[i][j] = 1;
+        blanks.push(bfsForBlanks([[i, j]], game_board)); //반칸의 배열 저장
+      }
+    }
+  }
+  for (let i = 0; i < table.length; i++) {
+    for (let j = 0; j < table.length; j++) {
+      if (table[i][j] === 1) {
+        table[i][j] = 0;
+        const block = bfsForBlocks([[i, j]], table);
+        blocks.push(getAllRotations(block)); // 회전까지 시킨 4방향의 배열을 전부 저장
+      }
+    }
+  }
+
+  const canPlaceBlock = (blank, block) => {
+    // 인자를 받아 비교하는 함수
+    if (blank.length !== block.length) return false; // 받아온 인자들의 길이가 다르면 들어갈수 없으므로 false
+    for (let i = 0; i < blank.length; i++) {
+      if (blank[i][0] !== block[i][0] || blank[i][1] !== block[i][1]) {
+        // 각 인자의 값들이 다르다면 맞지않음으로 false
+        return false;
+      }
+    }
+    return true; // 그이외는 맞는 값이니 true 반환
+  };
+
+  let answer = 0; //정답 초기화
+  const used = new Array(blocks.length).fill(false); // blocks 배열의 길이만큼 boolean 배열 생성
+
+  for (const blank of blanks) {
+    // blanks의 길이만큼 blank라는 이름으로 가져옴
+    for (let i = 0; i < blocks.length; i++) {
+      if (used[i]) continue; //boolean 배열의 [i] 값이 true 라면 이미 진행한 block이니 무시
+      for (const block of blocks[i]) {
+        // blocks[i] 안의 갯수만큼 block 으로 가져옴
+        if (canPlaceBlock(blank, block)) {
+          //비교함수 return이 true 라면
+          answer += blank.length; // answer 에 blank.length = 채워지는 블록의 갯수이니 더해줌
+          used[i] = true; // 방문처리
+          break;
+        }
+      }
+      if (used[i]) break; // 이미 맞는 값이 나왔으면 해당 블록의 더이상의 비교는 필요없으니 break
+    }
+  }
+
+  return answer; //정답 리턴
+}
+```
 
 ### 풀이
+
+DFS 로 풀기로 하였지만 아직 어려워 BFS 로 풀어버렸다.. 추후에 좀더 이해가 되고나면 DFS로 다시풀기로 하겠다.
+
+일단 문제의 핵심 제한은
+1. 블록을 회전은 가능하지만 반전은 줄수 없다는 것
+2. 블록을 채웠을때 한칸이상 빈칸이 생기면 안됨
+3. 한 빈칸에는 한블록만 채워넣을수 있음
+4. 두블럭이나 빈칸이 상하좌우 1칸이내로 인접해있지 않음
+   
+이렇게라고 생각하고 문제를 풀었다.
+일단
+
+1. 저번 이동경로 찾기 문제에서 사용했던 BFS를 살짝 변형시켜 game_board 와 block 배열 의 각각 빈칸들과 블록을 추출한다.
+2. 추출해낸 빈칸과 블록의 절대좌표가 달라 비교할수없으니 [0,0] 좌표로 최대한 땡겨와 정규화를 해준다.
+3. 블록의 90도씩 회전한 좌표값을 얻어내기위해 블록배열에 회전한 값을 넣어주고 정규화를 한번 다시 해준다.(회전시 [0,0] 좌표에서 멀어지고 음수값이 나올수 있기 때문에)
+4. 회전한 좌표값까지 들어있는 블록배열과 빈칸 배열을 비교하고 채워지는 블록수를 더해 출력한다.
 
 ---
 
@@ -508,8 +672,53 @@ https://school.programmers.co.kr/learn/courses/30/lessons/43164
 ## 출제자 : KUN
 
 ### 코드
+```javascript
+function solution(tickets) {
+  let answer = [];
+  const result = [];
+  const visited = [];
+  
+  tickets.sort(); // 티켓을 알파벳 순으로 정렬
+  
+  const len = tickets.length;
+  const dfs = (str, count) => {
+    result.push(str); // 현재 위치를 경로에 추가
+    
+    if (count === len) {
+      // 모든 티켓을 사용한 경우
+      answer = result.slice(); // 현재 경로를 최종 경로로 설정
+      return true; // 탐색 종료
+    }
+    
+    for (let i = 0; i < len; i++) {
+      // 모든 티켓을 순회
+      if (!visited[i] && tickets[i][0] === str) {
+        // 현재 티켓이 사용되지 않았고 출발지가 현재 위치와 같은 경우
+        visited[i] = true; // 현재 티켓을 사용
+        
+        if (dfs(tickets[i][1], count + 1)) return true; // 도착지로 이동하여 DFS를 계속
+        
+        visited[i] = false; // 현재 티켓을 사용하지 않고 다음 경로를 탐색
+      }
+    }
+    
+    result.pop(); // 현재 위치를 경로에서 제거 (백트래킹)
+    
+    return false; // 유효한 경로를 찾지 못함
+  }
+  
+  dfs("ICN", 0); // 인천에서 시작하여 탐색
+  
+  return answer; // 최종 경로 반환
+}
+```
 
 ### 풀이
+일단 출발지가 동일한 티켓이 복수 존재시 알파벳순으로 티켓을 사용한다 하였으니 
+sort() 함수를 사용해 티켓배열을 정렬해주었다. 
+재귀 할때마다 카운트를 ++시켜주어 카운트가 티켓의 갯수만큼 반복되었다면 티켓을 전부 사용한것이니 함수를 종료하고 리턴해준다.
+출발지는 ICN으로 고정이기에 첫 시작 여행지를 현재위치에 넣고 티켓을 순회하며 사용되지않은 티켓중에 출발지가 현재위치와 같은 티켓을 가지고와 visited 배열에서 사용처리를 해주고 재귀식에 도착지와 카운트를 추가해 함수를 재시작한다. 유효한 값을 찾지 못했을경우에 백트래킹을 하기위해 
+현재 위치를 경로에서 제거 하는 return.pop() 해 이전경로에서 다른 티켓을 찾도록 설정해 주었다.
 
 ## 풀이자 : Quarang
 
