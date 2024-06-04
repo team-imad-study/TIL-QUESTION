@@ -225,10 +225,67 @@ BFS를 사용하여 모든 경로를 탐색하면서 검은 방을 만날 때마
 ## 풀이자 : Quarang
 
 ### 코드
+```swift
+let N = Int(readLine()!)!   
+var graph = [[Int]]()       
 
+(0..<N).forEach { _ in
+    let row = readLine()!.compactMap { Int(String($0)) }
+    graph.append(row)
+}
+
+var visit = Array(repeating: Array(repeating: 0, count: N), count: N)
+visit[0][0] = 1
+
+let dx = [1, -1, 0, 0]
+let dy = [0, 0, -1, 1]
+
+func dijkstra() {
+    var heap = [(Int, Int, Int)]()
+    heap.append((0, 0, 0))
+    
+    while !heap.isEmpty {
+        heap.sort { $0.0 < $1.0 }
+        let (cnt, x, y) = heap.removeFirst()
+        
+        if x == N - 1, y == N - 1 {
+            print(cnt)
+            return
+        }
+        
+        for i in 0..<4 {
+            let nx = x + dx[i]
+            let ny = y + dy[i]
+            
+            if (0..<N) ~= nx,(0..<N) ~= ny,visit[nx][ny] == 0 {
+                visit[nx][ny] = 1
+                if graph[nx][ny] == 0 { heap.append((cnt + 1, nx, ny)) }
+                else { heap.append((cnt, nx, ny)) }
+            }
+        }
+    }
+}
+dijkstra()
+```
 
 ### 풀이
+```
+𝑂(𝐸𝑙𝑜𝑔𝐸)
+```
 
+> 과정
+1. 입력 받은 맵의 방을 기준으로 2차원 배열 생성
+2. 맵의 갯수 만큼 방문 배열도 2차원 배열로 생성
+3. 시작 지점은 항상 방문중이기 때문에 1로 초기화
+4. 좌표의 이동을 계산하기 위한 dx,dy을 이동 배열로 선언
+5. 다익스트라 함수 실행
+    5 - 1. 힙을 생성, 현제 좌표 및 방을 바꾼 횟수를 저장하기 위함
+    5 - 2. 만약 도착지에 도착했다면 현재 방을 바꾼 횟수를 출력
+    5 - 3. 현재 위치에서 상하 죄우 값을 루프로 돌림
+    5 - 4. 만약 맵을 벗어나지 않았고 방문을 하지 않은 방이라면
+    5 - 5. 방문 처리 진행
+    5 - 6. 만약 흰 방이면 현제 상황을 힙에 저장하고 아닐 경우 방을 바꾼 횟수를 1 증가 시키고 힙에 저장
+6. 이 과정을 반복하면 방을 바꾼 횟수가 작은 순서대로 우선순위 큐에 쌓이기 때문에 도착했을 때 당시 바꾼 횟수가 가장 작은 값의 요소를 출력할 수 있음
 ---
 
 # [백준][13549번] 숨바꼭질 3
