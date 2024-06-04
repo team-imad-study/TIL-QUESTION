@@ -317,7 +317,73 @@ https://www.acmicpc.net/submit/24090
 ## 출제자 : PCYSB
 
 ### 코드
+```java
+var K: Int = 0
+var num: Int = 0
+fun quickSort(A: IntArray, p: Int, r: Int) {
+    if (p < r) {
+        val q = partition(A, p, r)  // 분할
+        quickSort(A, p, q - 1)  // 왼쪽 부분 배열 정렬
+        quickSort(A, q + 1, r)  // 오른쪽 부분 배열 정렬
+    }
+}
+
+fun partition(A: IntArray, p: Int, r: Int): Int {
+    val x = A[r]  // 기준 원소
+    var i = p - 1  // i는 x보다 작거나 작은 원소들의 끝지점
+    for (j in p until r) {  // j는 아직 정해지지 않은 원소들의 시작 지점
+        if (A[j] <= x) {
+            i++
+            A.swap(A ,i, j)  // i값 증가 후 A[i] <-> A[j] 교환
+        }
+    }
+    if (i + 1 != r) {
+        A.swap(A,i + 1, r)  // i + 1과 r이 서로 다르면 A[i + 1]과 A[r]을 교환
+    }
+    return i + 1
+}
+
+// 배열의 두 요소를 교환하는 확장 함수
+fun IntArray.swap(A: IntArray, i: Int, j: Int) {
+    val temp = A[i]
+    A[i] = A[j]
+    A[j] = temp
+    ++num
+
+    if (num == K){
+        println("${A[i]} ${A[j]}")
+    }
+
+}
+
+fun main() {
+    val (N, K1) = readLine()!!.split(' ').map { it.toInt() }
+    K = K1
+
+    val arr = readLine()!!.split(' ').map { it.toInt() }.toIntArray()
+
+    quickSort(arr, 0, N - 1)
+    if (num < K) {
+        println(-1)
+    }
+}
+
+```
 ### 풀이
+입출력 예제를 보면 로무토 방식을 사용하고 있음을 알 수 있다.
+그렇기에 해당 방식으로 교환이 진행 되도록 코드를 구성하면된다.
+
+**시작 상태**
+  0 0 0 0 0 0 0 0
+i j             p
+
+while(j= 초기값~ 피봇 값 바로전 index){
+	if(j가 가리키는 값 <= 피봇 값)
+	i++
+	i와 j 가 가리키는 값 swap
+   j++
+}
+i+1 과 피봇값 swap
 
 ## 풀이자 : Quarang
 
