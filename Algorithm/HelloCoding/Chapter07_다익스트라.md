@@ -14,7 +14,90 @@ https://www.acmicpc.net/problem/1719
 
 ### 코드
 
+```swift
+let input = readLine()!.split(separator: " ").map { Int($0)! }
+    let n = input[0]
+    let m = input[1]
+    var graph = [[(Int, Int)]](repeating: [], count: n + 1)
+
+    for _ in 0..<m {
+        let edge = readLine()!.split(separator: " ").map { Int($0)! }
+        graph[edge[0]].append((edge[2], edge[1]))
+        graph[edge[1]].append((edge[2], edge[0]))
+    }
+
+    for i in 1...n {
+        dijkstra(start: i, n: n, graph: graph)
+    }
+    func dijkstra(start: Int, n: Int, graph: [[(Int, Int)]]) {
+        var parents = [Int](repeating: 0, count: n + 1)
+        for i in 1...n {
+            parents[i] = i
+        }
+        var distance = [Int](repeating: 10001, count: n + 1)
+        distance[start] = 0
+        
+        var pq = [(Int, Int)]()
+        pq.append((0, start))
+        
+        while !pq.isEmpty {
+            pq.sort { $0.0 > $1.0 }
+            let (currCost, currPos) = pq.removeLast()
+            
+            if distance[currPos] < currCost {
+                continue
+            }
+            
+            for next in graph[currPos] {
+                let (nextCost, nextPos) = next
+                if currCost + nextCost < distance[nextPos] {
+                    pq.append((currCost + nextCost, nextPos))
+                    distance[nextPos] = currCost + nextCost
+                    parents[nextPos] = currPos
+                }
+            }
+        }
+        
+        for i in 1...n {
+            if i == start {
+                print("-", terminator: " ")
+            } else {
+                var curr = i
+                while parents[curr] != start {
+                    curr = parents[curr]
+                }
+                print(curr, terminator: " ")
+            }
+        }
+        print()
+    }
+```
 ### 풀이
+```
+해당 문제는 다익스트라 알고리즘으로 모든 노드의 최단 경로를 출력하는 문제
+기본적인 다익스트라 문제로 응용부분은 없는 것으로 생각
+모든 간선을 조사해야하기 때문에 기존 시간복잡도인 𝑂(𝐸𝑙𝑜𝑔𝐸)에 노드 갯수인 V를 곱해
+𝑂(V𝐸𝑙𝑜𝑔𝐸)가 나오는 것으로 추정
+```
+
+> 과정
+1. 노드와 노드 사이에 간선의 가중치를 튜플 형태로 추가
+2. 부모 노드를 저장할 배열 생성하고 0으로 초기화
+3. 각 인덱스에 인덱스 주소값을 저장
+4. 경로 저장 배열이 담겨 있는 배열을 생성하고 가장 큰 값인 정수를 저장
+5. 시작점은 항상 0으로 초기화
+6. 다익스트라를 액션을 취할 우선순위 큐 생성 후 가장 처음 시작할 노드와 노드의 값을 enqueue
+7. 우선순위 큐가 빌 때까지 반복
+8. 우선순위 큐를 사용하기 때문에, 항상 힙의 값 기준으로 오름차순으로 정렬
+9. 큐의 성질로 인해 가장 처음 값을 dequeue
+10. 경로 저장 배열의 특정 노드 값이 가중치보다 작을 경우 아무런 이벤트를 하지 않고 다음 루프 실행
+11. 그래프에 현재 노드와 연결된 모든 노드의 값들로 루프를 실행
+12. 인접 노드와의 거리와 노드이름을 추출
+13. 인접 노드 + 가중치가 배열 저장 값보다 작을 경우
+14. 우선순위큐에 인접 노드 + 가중치값과 인접노드를 저장함
+15. 경로 저장 배열의 특정 배열에 가중치를 저장
+16. 부모 배열에는 현재 노드를 저장
+17. 만약 시작점과 현제 노드가 같다면 "-"를 출력하고 아닐 경우 아닐때까지 현재 값을 출력
 
 ## 풀이자 : PCYSB
 
@@ -142,9 +225,69 @@ BFS를 사용하여 모든 경로를 탐색하면서 검은 방을 만날 때마
 ## 풀이자 : Quarang
 
 ### 코드
+```swift
+let N = Int(readLine()!)!   
+var graph = [[Int]]()       
+
+(0..<N).forEach { _ in
+    let row = readLine()!.compactMap { Int(String($0)) }
+    graph.append(row)
+}
+
+var visit = Array(repeating: Array(repeating: 0, count: N), count: N)
+visit[0][0] = 1
+
+let dx = [1, -1, 0, 0]
+let dy = [0, 0, -1, 1]
+
+func dijkstra() {
+    var heap = [(Int, Int, Int)]()
+    heap.append((0, 0, 0))
+    
+    while !heap.isEmpty {
+        heap.sort { $0.0 < $1.0 }
+        let (cnt, x, y) = heap.removeFirst()
+        
+        if x == N - 1, y == N - 1 {
+            print(cnt)
+            return
+        }
+        
+        for i in 0..<4 {
+            let nx = x + dx[i]
+            let ny = y + dy[i]
+            
+            if (0..<N) ~= nx,(0..<N) ~= ny,visit[nx][ny] == 0 {
+                visit[nx][ny] = 1
+                if graph[nx][ny] == 0 { heap.append((cnt + 1, nx, ny)) }
+                else { heap.append((cnt, nx, ny)) }
+            }
+        }
+    }
+}
+dijkstra()
+```
 
 ### 풀이
+```
+이 문제는 시작점부터 도착점까지 이동을 하면서 방을 바꾸면서 이동한다. 그 방을 바꾼 횟수가 가장 적은 횟수를 출력하는 문제이다.
 
+시작점과 끝점은 항상 일정하고 경로를 찾는 문제가 아니기 때문에 모든 경로를 다 검사해야한다. 그럼으로 평균적인 시간복잡도는 𝑂(𝐸𝑙𝑜𝑔𝐸)로 예상됨
+```
+
+> 과정
+1. 입력 받은 맵의 방을 기준으로 2차원 배열 생성
+2. 맵의 갯수 만큼 방문 배열도 2차원 배열로 생성
+3. 시작 지점은 항상 방문중이기 때문에 1로 초기화
+4. 좌표의 이동을 계산하기 위한 dx,dy을 이동 배열로 선언
+5. 다익스트라 함수 실행
+    5 - 1. 힙을 생성, 현제 좌표 및 방을 바꾼 횟수를 저장하기 위함
+    5 - 2. 만약 도착지에 도착했다면 현재 방을 바꾼 횟수를 출력
+    5 - 3. 현재 위치에서 상하 죄우 값을 루프로 돌림
+    5 - 4. 만약 맵을 벗어나지 않았고 방문을 하지 않은 방이라면
+    5 - 5. 방문 처리 진행
+    5 - 6. 만약 흰 방이면 현제 상황을 힙에 저장하고 아닐 경우 방을 바꾼 횟수를 1 증가 시키고 힙에 저장
+6. 이 과정을 반복하면 방을 바꾼 횟수가 작은 순서대로 우선순위 큐에 쌓이기 때문에 도착했을 때 당시 바꾼 횟수가 가장 작은 값의 요소를 출력할 수 있음
 ---
 
 # [백준][13549번] 숨바꼭질 3
