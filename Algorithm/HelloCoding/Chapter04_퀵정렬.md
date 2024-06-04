@@ -529,6 +529,80 @@ quick3()
 ## 풀이자 : PCYSB
 
 ### 코드
+```java
+lateinit var B: IntArray //배열 B
+var flag = 0 //우리가 반환할 값
+
+fun main() {
+    val br = BufferedReader(InputStreamReader(System.`in`))
+    val N = br.readLine().toInt() //배열 A, B의 크기
+    flag = 0
+
+    //배열 A의 요소
+    val A = br.readLine().split(' ').map { it.toInt() }.toIntArray()
+
+    //배열 B의 요소
+    B = br.readLine().split(' ').map { it.toInt() }.toIntArray()
+
+    compareArray24092(A) //배열 A와 B를 비교하여 다를 경우 false 같을 경우 true를 반환
+    quickSort24092(A, 0, N - 1)
+
+    println(flag)
+}
+
+fun quickSort24092(A: IntArray, left: Int, right: Int) {
+    if (left >= right || flag == 1) return //교차 되거나 같은 지점에 있을 경우, flage가 1일 경우에는 그냥 리턴
+
+    val pivot = partition24092(A, left, right)
+
+    quickSort24092(A, left, pivot - 1)
+    quickSort24092(A, pivot + 1, right)
+}
+
+fun partition24092(A: IntArray, left: Int, right: Int): Int {
+    var lo = left
+    var hi = right
+    val pivot = A[right] //피벗은 오른쪽
+
+    // 교차되기 전까지 반복
+    while (lo < hi) {
+        while (lo < hi && A[lo] < pivot) {
+            lo++
+        }
+
+        while (lo < hi && A[hi] >= pivot) {
+            hi--
+        }
+
+        swap24092(A, lo, hi)// i와 j 스왑
+        compareArray24092(A) // 배열 B와 순서가 같은지 확인한다.
+    }
+    swap24092(A, hi, right) // 피벗과 i값 교환 후 다시 배열 순서가 같은지 확인 한다.
+    compareArray24092(A)
+    return hi
+}
+
+fun swap24092(A: IntArray, i: Int, j: Int) {
+    val temp = A[i]
+    A[i] = A[j]
+    A[j] = temp
+}
+// 처음, 스왑할 때마다 값을 확인
+fun compareArray24092(A: IntArray): Boolean {
+    for (i in A.indices) {
+        if (A[i] != B[i]) {
+            return false
+        }
+    }
+    flag = 1 // 한 번이라도 return true였다면 flag는 1로 고정
+    return true
+}
+
+```
 ### 풀이
+퀵정렬 1에서는 로무토 방식을 이용하여 해결 하였지만 이번 퀵정렬 3번은 조금 다르다.
+의사 코드는 퀵정렬 1과 동일 하나 이번 문제는 주어진 배열이 변경되는 과정에서 입력한 상태와 같은 상태를 지니고만 있다면
+1 or 0을 출력해주면 된다. 또한 로무토 방식과 비교해 보았을 때 교환 되는 방식이 다르기는 하지만 교환 후 변해가는 배열의 상태는 동일하기에
+일반적인 오른쪽 피벗일 때의 퀵정렬과 같이 코드를 구성한뒤 스왑을 할 때마다 해당 배열이 입력받은 또 다른 배열과 같은 상태인지만을 확인하면된다.
 
 ---
