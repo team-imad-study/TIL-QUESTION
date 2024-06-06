@@ -300,8 +300,68 @@ System.out.println(sb);
 ## 풀이자 : KUN
 
 ### 코드
+```javascript
+const readline = require("readline")
+
+
+// readline 인터페이스 생성
+const rl: any = readline.createInterface({
+  input: process.stdin, // 파일에서 입력 받기
+  output: process.stdout, // 표준 출력으로 출력
+});
+
+let input: any[] = []; // 입력값을 저장할 배열 선언\
+
+rl.on("line", function (line: any) {
+input = input.concat(line.split(" ").map((x: string) => parseInt(x)));
+}).on("close", function () {
+  input.shift();
+  const distanceArr = result(input);
+
+  console.log(distanceArr.join(" "));
+});
+
+function result(input: number[]) {
+  // 수열 A를 저장하고 있는 배열
+  const numArr: number[] = new Array(input.length + 1).fill(0);
+
+  // 각 숫자의 이동거리를 저장하는 배열
+  const answer: number[] = new Array(input.length + 1).fill(0);
+
+  // idxArr 배열 선언
+  const idxArr: number[] = new Array(input.length + 1).fill(0);
+  for (let i = 1; i <= input.length; i++) {
+    const num = input[i - 1];
+    idxArr[num] = i;
+    numArr[i] = num;
+  }
+  for (let i = 1; i < input.length + 1; i++) {
+    if (numArr[i] !== i) {
+      const minIndex = idxArr[i];
+
+      const distance = minIndex - i;
+
+      answer[numArr[i]] += distance;
+      answer[numArr[minIndex]] += distance;
+
+      idxArr[numArr[i]] = idxArr[i];
+      numArr[minIndex] = numArr[i];
+    }
+  }
+  answer.shift();
+  return answer;
+}
+```
+
 
 ### 풀이
+처음에 문제를 보고 출제자에게 힌트까지 얻었을때 선택정렬문제에서 선택정렬을 사용하면 안된다. 시간초과가 나기때문이다. 뭔소리인가 하였다. 하지만 문제를 다시한번 꼼꼼히보고 생각하니 문제에서 제시된 조건중 하나인 주어진 배열에는 1부터 N까지의 정수가 "중복되지않고", "빠짐없이" 등장한다는 조건을 다시보게 되었다. 이는 어떠한 배열이 들어오든 우린 이미 들어온 배열이 정렬되었을때 어떠한 모습인지를 이미 알고있다는걸 뜻했다. 예) N 이 8인 배열을 받았다면 정렬되었을때 [1,2,3,4,5,6,7,8] 이런식으로 오름차순 정렬이 되어있다는걸 뜻한다.
+이를 이용해서 문제를 풀면 루프를 돌며 정렬된배열 최솟값의 위치에 최솟값이 없을경우 해당요소와 위치를바꾸어 바꾸었을때의 인덱스차이값만큼 이동거리를 구하여 더해주면된다 이를위해 배열을 
+
+- 수열 A를 저장하고 있는 numArr 배열
+- 각 숫자의 이동거리를 저장하는 answer 배열
+- 수열의 인덱스 값을 가지고있는 idxArr 배열
+  이세배열을 선언하여 계산을 해주었다. 
 
 ---
 
