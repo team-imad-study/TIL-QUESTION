@@ -127,3 +127,8 @@
   - [[백준][1753번] 최단경로](./Algorithm/HelloCoding/Chapter07_다익스트라.md#백준1753번-최단경로)
   - [[백준][2665번] 미로만들기](./Algorithm/HelloCoding/Chapter07_다익스트라.md#백준2665번-미로만들기)
   - [[백준][13549번] 숨바꼭질 3](./Algorithm/HelloCoding/Chapter07_다익스트라.md#백준13549번-숨바꼭질-3)
+- [[8장] 탐욕 알고리즘](./Algorithm/HelloCoding/Chapter08_탐욕알고리즘.md)
+  - [[프로그래머스][42883번] 큰 수 만들기](./Algorithm/HelloCoding/Chapter08_탐욕알고리즘.md#프로그래머스42883번-큰-수-만들기)
+  - [[프로그래머스][42860번] 조이스틱](./Algorithm/HelloCoding/Chapter08_탐욕알고리즘.md#프로그래머스42860번-조이스틱)
+  - [[프로그래머스][42885번] 구명보트](./Algorithm/HelloCoding/Chapter08_탐욕알고리즘.md#프로그래머스42885번-구명보트)
+   - [[백준][1541번] 잃어버린 괄호](./Algorithm/HelloCoding/Chapter08_탐욕알고리즘.md#백준1541번-잃어버린-괄호)
