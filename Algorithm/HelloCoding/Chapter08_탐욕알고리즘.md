@@ -174,7 +174,65 @@ public class Main {
 ## 풀이자 : PCYSB
 
 ### 코드
+``` java
+fun main() {
+    val calculate = readLine().toString()
+    //1. 문자열 추출
+    val regex = Regex("([-+])")
+    val tokens = calculate.split(regex).filter { it.isNotEmpty() } // 숫자만을 추출
+    val operators = regex.findAll(calculate).map { it.value }.toList()// 문자만을 추출
+    val firstNumber = tokens[0].toInt() //가장 처음 분리한 숫자
+
+    val numbers = IntArray(tokens.size) //변환된 숫자
+    numbers[0] = firstNumber
+
+    for (i in 1 until tokens.size) {
+        numbers[i] = tokens[i].toInt()
+    }
+
+
+
+    for (i in 0 until operators.size) {
+        var op = operators[i] // 연산자
+        if (op == "-") {
+            greedy(numbers, i + 1)
+            return
+        }
+    }
+    greedy(numbers, 100)
+
+}
+
+fun greedy(numbers: IntArray, i: Int) {
+    var result: Int = numbers[0] //결과값
+    var aaa: Boolean = false
+    for (j in 1 until numbers.size) {
+        // 처음 숫자부터 더하다가, -가 나온 이후에는 모든 숫자를 음수로 변경한다.
+        if (j == i) {
+            aaa = true
+        }
+        if (aaa) {
+            result -= numbers[j]
+        } else result += numbers[j]
+
+    }
+    println(result)
+
+}
+```
 
 ### 풀이
+1. 일단 입력을 String 형식으로 받기 때문에 숫자와 연산자를 분리해 주어야 한다.
+- 가장 처음과 마지막 문자는 숫자이기 때문에 처음의 문자는 무조건 양수가 나옴을 알 수 있다.
+- 첫 번째 숫자에는 기호가 없기 때문에 자연스럽게 숫자 배열과 연산자 리스트의 크기는 1이 차이 남을 알 수 있다.
+- 그래서 첫 번째 부호만을 따로 저장하고 나머지는 for문을 통해서 저장한다.
+
+2. 가장 작은 수를 만들어 내는 것은 결국 -의 유무이기 때문에 -가 나온 순간 부터는 모든 수를 빼서 더하기 시작하게 하면 된다.
+- 연산자를 검사하여 "-"가 나올 시에는 greedy함수를 호출한다.(i+1의 경우에는 연산자는 숫자를 기준으로 1번 인덱스부터 시작되기 때문)
+- 0번 인덱스의 요소부터 하나씩 더 하다가 "-"가 나왔다면 aaa 변수를 true로 바꾸고 이후의 모든 수는 빼기 시작한다.
+
+3. 만약 -가 하나도 없는 경우에는 그냥 더하기를 진행한다.
+- 이 경우 조건중 식의 길이는 50보다 작거나 같다고 하는 조건이 있기 때문에 조건에 부합하지 않는 큰 수를 greedy 함수에 넣어 true가 되지 못하게 막아 놓았다.
+
 
 ---
