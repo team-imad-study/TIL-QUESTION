@@ -110,8 +110,34 @@ https://school.programmers.co.kr/learn/courses/30/lessons/42885
 ## 출제자 : PCYSB
 
 ### 코드
+```java
+import java.util.*;
+
+class Solution {
+    public int solution(int[] people, int limit) {
+        int answer = 0;
+        int index = 0;
+         Arrays.sort(people);
+        
+        for (int i = people.length -1; i >= index; i--){
+            if(people[i] + people[index] <= limit){
+                answer++;
+                index++;
+            }
+            else{
+                answer++;
+            }
+        }
+        
+        return answer;
+    }
+}
+```
 
 ### 풀이
+구명 보트에 한 번에 최대 2명씩이라는 조건이 붙어 있기에 해당 문제는 손쉽게 풀 수 있다.
+가장 무거운 사람과 가장 가벼운 사람의 무게를 더했을 때 제한 무게를 넘지 않는다면 answer을 1씩 올리고 for문의 탈출 주기도 -1만큼 해준다.
+만약 무게를 더했을 때 제한 무게를 초과 한다면 answer을 1 올리고 for문의 탈출 주기를 수정하지 않는다.
 
 ## 풀이자 : Quarang
 
