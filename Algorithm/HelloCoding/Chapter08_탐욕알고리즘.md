@@ -142,6 +142,25 @@ class Solution {
 ## 풀이자 : Quarang
 
 ### 코드
+```swift
+func solution(_ people: [Int], _ limit: Int) -> Int {
+        var people = people.sorted()
+        var result = 0
+        var start = 0
+        var end = people.count - 1
+        
+        while start <= end {
+            if people[start] + people[end] <= limit {
+                start += 1
+                end -= 1
+            } else {
+                end -= 1
+            }
+            result += 1
+        }
+        return result
+    }
+```
 
 ### 풀이
 
