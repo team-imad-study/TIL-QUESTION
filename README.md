@@ -132,3 +132,8 @@
   - [[프로그래머스][42860번] 조이스틱](./Algorithm/HelloCoding/Chapter08_탐욕알고리즘.md#프로그래머스42860번-조이스틱)
   - [[프로그래머스][42885번] 구명보트](./Algorithm/HelloCoding/Chapter08_탐욕알고리즘.md#프로그래머스42885번-구명보트)
    - [[백준][1541번] 잃어버린 괄호](./Algorithm/HelloCoding/Chapter08_탐욕알고리즘.md#백준1541번-잃어버린-괄호)
+- [[9장 동적 계획법]](./Algorithm/HelloCoding/Chapter09_동적계획법.md)
+  - [[프로그래머스][42895번] N으로 표현](./Algorithm/HelloCoding/Chapter09_동적계획법.md#프로그래머스42895번-n으로-표현)
+  - [[백준][2629번] 양팔저울](./Algorithm/HelloCoding/Chapter09_동적계획법.md#백준2629번-양팔저울)
+  - [[백준][11058번] 오르막수](./Algorithm/HelloCoding/Chapter09_동적계획법.md#백준11057번-오르막수)
+  - [[프로그래머스][42898번] 등굣길](./Algorithm/HelloCoding/Chapter09_동적계획법.md#프로그래머스42898번-등굣길)
