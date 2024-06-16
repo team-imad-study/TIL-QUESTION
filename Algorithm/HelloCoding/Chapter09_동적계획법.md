@@ -19,8 +19,57 @@ https://school.programmers.co.kr/learn/courses/30/lessons/42895
 ## 풀이자 : PCYSB
 
 ### 코드
+```java
+class Solution {
+    fun solution(N: Int, number: Int): Int {
+        if (N == number) return 1
+        
+        val dp = Array(9) { mutableSetOf<Int>() }
+        dp[1].add(N)
+        
+           for (i in 2..8) {
+
+        dp[i].add(N.toString().repeat(i).toInt())
+
+        for (j in 1 until i) {
+            for (x in dp[j]) {
+                for (y in dp[i - j]) {
+                    dp[i].add(x + y)
+                    dp[i].add(x - y)
+                    dp[i].add(x * y)
+                    if (y != 0) {
+                        dp[i].add(x / y)
+                    }
+                }
+            }
+        }
+
+        if (number in dp[i]) {
+            println(i)
+            return i
+
+        }
+    }
+
+    return -1
+}
+}
+```
 
 ### 풀이
+i는 현재 만들어지고 있는 조합들을 의미한다.
+- 가장 처음에는 해당 숫자를 사칙연산이 아닌 연속된 숫자들만을 할당한다.
+- 1번 인덱스에는 직접 첫 숫자를 추가하기에 i는 2번 인덱스 부터 시작한다.
+
+j는 조합을 만들기 위해서 찾아볼 배열들의 범위를 말한다.
+- 1번 인덱스	~ i-1번 인덱스까지의 배열을 의미한다.
+
+x는 j번째 배열에 있는 요소들을 하나씩 기준으로 잡고 y와 더한다.
+
+y는 j-1번째에 요소들을 전부 현재 j 번째 요소와 사칙연산을 하여 배열에 추가한다.
+
+이런식으로 8번 까지 반복하여 8번을 초과한 경우에는 -1을 리턴하고 그렇지 않은 경우에 i가 한 번 끝날때 마다 해당 배열안에 만들어야 하는 숫자가 있는지를 확인
+하여 있다면 해당 인덱스를 리턴하고 그렇지 않다면 다시 반복한다.
 
 ---
 
