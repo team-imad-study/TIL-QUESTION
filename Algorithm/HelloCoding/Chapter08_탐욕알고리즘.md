@@ -55,8 +55,31 @@ func solution(_ number:String, _ k:Int) -> String {
 ## 풀이자 : KUN
 
 ### 코드
+```javascript
+function solution(number, k) {
+  const stack = []; // 스택 배열 추가 
 
+  for (const num of number) { // nuber의 갯수만큼 반복
+    while (k > 0 && stack[stack.length - 1] < num) {
+        // k 가 0보다 클때 스택의 마지막요소가 현재 돌고있는 숫자보다 작을때 
+      stack.pop(); //마지막 요소 제거
+      k--; // k 마이너스해줌
+    }
+    stack.push(num); // 그렇지 않을경우 스택에 추가 
+  }
+
+  stack.splice(stack.length - k, k);// 제거해야하는 k 가 다돌고나와도 0보다 클때 splice를 이용해 스택 의 뒤 k번째 부터 k만큼 제거
+
+  return stack.join(""); //정답 리턴
+}
+```
 ### 풀이
+처음 문제를 풀기시작했을땐 단순히 주어진 숫자들을 루프돌며 현재숫자보다 이후에 나올 숫자보다 작으면 현재숫자를 제거하면 될거라고 생각해 그렇게 구현하니 시간초과가 나버렸다. 그래서 
+스택을 이용해서 푼다고 하기에 나도 스택을 사용해 풀어보기로 하였다.
+스택을 배열을 사용해 구현 해주고 nuber를 루프로 돌며 제거해야하는 숫자의 갯수 k 가 0보다 클때 && 스택의 마지막 요소가 지금 돌고있는 숫자보다 작을때 스택의 마지막 요소를 제거하고 숫자를 한개 제거했으니 k-- 를 해준다. 
+그렇지 않을 경우엔 스택에 현재 숫자를 추가하여 반복문을 반복할수있도록 해준다.
+이렇게해서 전체의 숫자를 돌고난후에도 k가 아직 남아있을경우가 있을수 있기에 
+그럴경우 k의 갯수만큼 스택의 뒷부분부터 제거해준다.
 
 ---
 
@@ -70,8 +93,84 @@ https://school.programmers.co.kr/learn/courses/30/lessons/42860
 ## 출제자 : KUN
 
 ### 코드
+```javascript
+function solution(name) {
+  var answer = 0;
+      //처음부터 순서대로 오른쪽으로 움직였을때의 최솟값
+  let min = name.length - 1;
+
+  for (let i = 0; i < name.length; i++) {
+    let currentAlPhabet = name.charCodeAt(i); 
+      // 루프문을 돌며 현재 인덱스의 알파뱃을 아스키코드로 가져옴
+      // 총알파뱃 갯수 26개중 중간점인 N 보다 작으면(A~M)
+    if (currentAlPhabet < 78) {  // N의 아스키코드 78
+      answer += currentAlPhabet - 65; 
+        //알파벳의 아스키코드에서 A의 아스키코드 만큼 빼줌 A일경우 0
+    } else {
+      // N보다 크거나 같으면(N~Z)
+      // Z의 아스키 코드 90 에서 알파뱃의 아스키코드만큼 빼줌
+      // A에서 Z로 이동할때 한번만큼의 이동이 필요하니 1을더함
+      answer += 90 - currentAlPhabet + 1; 
+    }
+
+    
+    let nextIndex = i + 1;
+
+    // 현재알파벳이 마지막 알파벳이 될 때까지 && 다음알파벳으로 A가 나올때까지 nextIndex += 1
+    // nextIndex가 A가 아니면 넘어가고, nextIndex에 A가 나온다면 nextIndex += 1을 하여 A의 다음 인덱스도 A인지 확인한다.
+    
+    while (nextIndex < name.length && name.charCodeAt(nextIndex) === 65) {
+      nextIndex += 1;
+    }
+
+    // length - nextIndex는 뒤로 쭉 갔을 때의 길이(A를 통과해서 갔을 때).
+    min = Math.min(
+      min, // 오른쪽으로만 이동하는경우
+      i * 2 + name.length - nextIndex, 
+        // A를 기준으로 왼쪽먼져 처리하고 반대로 넘어가기
+        // A를 기준으로 왼쪽 알파벳수가 오른쪽 알파벳수보다 적을때 최솟값
+        // `A` 앞의 알파벳 수 => i
+        // 왔다갔다 해야하는 횟수 => 2
+        // `A` 뒤의 알파벳 수 => name.length - nextIndex
+      i + (name.length - nextIndex) * 2 
+        // 처음부터 반대로 넘어가기
+        // A를 기준으로 왼쪽 알파벳수가 오른쪽 알파벳수보다 많을때 최솟값
+        // `A` 앞의 알파벳 수 => i
+        // `A` 뒤의 알파벳 수 => name.length - nextIndex
+        // 왔다갔다 해야하는 횟수 => 2
+    ); // 이 세 요소들중 최솟값을 가져옴
+  }
+  answer += min; // 알파벳의 이동횟수와 커서의 이동횟수를 더함
+  return answer; // 출력
+}
+```
 
 ### 풀이
+이문제에서 중요한것은 문자를 수정할때의 이동횟수가 아닌 커서를 움직일때의 이동횟수를 구하는것이 관건 이였다.
+문자열은 아스키 코드를 사용해 가운데 알파벳인 n 을 기준으로 n보다 크면 아랫방향으로 움직이도록 n보다 작으면 a부터 정방향으로 움직이도록 해서 이동거리를 계산하면된다
+
+하지만 커서를 이동시키는것은 세가지의 경우가 있다.
+
+커서의 기초위치는 첫번째칸이다.
+
+1. 기초위치부터 끝까지 정방향으로만 이동하는경우
+
+2. 중간에 a 가 있는경우 a 기준 왼쪽부터 이동했다가 뒤로 돌아 반댓방향으로 진행하는경우
+
+3. 중간에 a 가 있는경우 처음부터 뒷방향으로 갔다가 왼쪽으로 다시 돌아오는경우
+
+위 세가지 경우를 각각 현재 코드로 구현하면
+
+1. name.length - 1
+
+2. i * 2 + name.length - nextIndex
+
+3. i + (name.length - nextIndex) * 2
+
+이렇게 구현할수있었다. 
+nextIndex는 연속된 A 의 마지막 인덱스를 가르킨다.
+
+이세가지 경우중 최솟값을 구해내서 기존 알파벳 이동횟수계산에 더해줘 리턴을 해줬다.
 
 ## 풀이자 : NCookie
 
