@@ -297,8 +297,56 @@ https://www.acmicpc.net/problem/2606
 ## 출제자 : PCYSB
 
 ### 코드
+``` java
+fun main() {
+    val N = readLine()!!.toInt() // 총 컴퓨터의 수
+    val C = readLine()!!.toInt() //연결된 컴퓨터 수
+    val graph = mutableMapOf<Int, MutableList<Int>>()
+
+    for (i in 0 until C){
+        val (A, B) = readLine()!!.split(' ').map { it.toInt() }
+        graph.computeIfAbsent(A) { mutableListOf() }.add(B)
+        graph.computeIfAbsent(B) { mutableListOf() }.add(A)
+    }
+    val infectedCount = bfs2606(graph, 1)
+    println(infectedCount)
+
+
+
+}
+
+fun bfs2606(graph: Map<Int, List<Int>>, start: Int): Int{
+    val visited = mutableListOf<Int>()
+    var queue:Queue<Int> = LinkedList()
+    queue.add(start)
+    visited.add(start)
+
+    while (queue.isNotEmpty()){
+        val node = queue.poll() //큐에 있는 내용을 제거함
+
+        for (neighbor in graph[node] ?: emptyList()){
+            if (neighbor !in visited){
+                visited.add(neighbor)
+                queue.add(neighbor)
+            }
+        }
+    }
+
+    return visited.size-1
+
+}
+```
 
 ### 풀이
+해당 문제는 서로 연결되어 있는가가 가장 중요한 문제이기 때문에
+각 노드간의 연결만을 확실하게 해준다면 쉽게 풀 수 있다.
+
+우선 
+graph.computeIfAbsent(A) { mutableListOf() }.add(B)
+graph.computeIfAbsent(B) { mutableListOf() }.add(A)
+해당 부분을 통해 각 노드들을 연결하여 준다.
+이후에는 일반적인 BFS 방식을 통하여 리스트에 감염된 컴퓨터들의 목록을 나열하고
+해당 리스트의 크기를 리턴해준다.
 
 ## 풀이자 : Quarang
 
