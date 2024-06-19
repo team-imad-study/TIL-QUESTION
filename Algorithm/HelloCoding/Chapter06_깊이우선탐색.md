@@ -616,8 +616,46 @@ https://school.programmers.co.kr/learn/courses/30/lessons/87946
 ## 출제자 : PCYSB
 
 ### 코드
+```java
+class Solution {
+
+    private val visited = BooleanArray(8)
+    private var count = 0
+    private var answer = 0
+
+    fun solution(k: Int, dungeons: Array<IntArray>): Int {
+        for (i in dungeons.indices) {
+            dfs(k, i, dungeons)
+        }
+        return answer
+    }
+
+    private fun dfs(k: Int, current:Int, dungeons: Array<IntArray>) {
+        visited[current] = true
+        count++
+
+        if (answer < count) {
+            answer = count
+        }
+
+        for (i in dungeons.indices) {
+            val newK = k - dungeons[current][1]
+            if (!visited[i] && (dungeons[i][0] <= newK)) {
+                dfs(newK, i, dungeons)
+            }
+        }
+
+        visited[current] = false
+        count--
+    }
+}
+```
 
 ### 풀이
+일반적인 dfs 방식을 통하여 만들 수 있는 모든 조합을 만들어 낸다.
+예를 들어 던전 0, 1, 2 라는 던전 3개가 있을 때 solution 함수에서는 0, 1, 2 순서대로 처음 시작 노드를 dfs 함수로 보낸다.
+
+dfs 함수에서는 해당 노드의 방문 여부를 확인하여 해당 시작 노드를 기준으로 나올 수 있는 모든 수를 만들며 count를 1씩 증가 시킨다. 해당 부분에서 가장 많은 count가 나올때 마다 해당 수를 answer에 저장하고 다시 모든 방문 지역을 false, count를 0으로 만들고 이를 반복하여 answer를 리턴한다.
 
 ## 풀이자 : NCookie
 
