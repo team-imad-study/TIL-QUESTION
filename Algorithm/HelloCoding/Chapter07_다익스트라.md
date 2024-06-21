@@ -102,8 +102,68 @@ let input = readLine()!.split(separator: " ").map { Int($0)! }
 ## 풀이자 : PCYSB
 
 ### 코드
+```java
+fun main() {
+    val (N, M) = readLine()!!.split(' ').map { it.toInt() } 
+    var arr = Array(N + 1) { IntArray(N + 1) { 10000 } } 
+    var result = Array(N + 1) { IntArray(N + 1) { 0 } } 
+
+
+    repeat(M) {
+
+        val (A, B, C) = readLine()!!.split(' ').map { it.toInt() }
+        arr[A][B] = C 
+        arr[B][A] = C 
+        result[A][B] = B 
+        result[B][A] = A
+    }
+
+    for (i in 1..N) {
+        di(arr, i, result)
+    }
+
+    for (i in 1..N) {
+        for (j in 1..N) {
+            if (result[i][j] != 0) print("${result[i][j]} ")
+            else print("- ")
+        }
+        println()
+    }
+
+}
+
+fun di(arr: Array<IntArray>, K: Int, result: Array<IntArray>) {
+    var distance = arr[K] 
+    distance[K] = 0 
+    result[K][K] = 0
+
+    for (i in 1 until distance.size) {
+        for (j in 1 until distance.size) {
+            if (arr[i][j] > arr[i][K] + arr[K][j]) { 
+                arr[i][j] = arr[i][K] + arr[K][j] 
+                result[i][j] = result[i][K] 
+            }
+        }
+    }
+}
+
+```
 
 ### 풀이
+우리는 세 가지를 생각해야 한다.
+1. 출발지
+2. 경유지
+3. 도착지
+출발지를 i, 경유지를 k, 도착지를 j라고 생각하면 i -> k -> j 이렇게 될 것이다.
+k와 j는 같을 수도 있을 것이다. (경유지 없이 바로 갈 수있는 경우)
+
+해당 부분을 식으로 만들면 아래와 같을 것이다.
+[ i ] [ j ] = [ i ] [ k ] + [ k ] [ j ] (가중치)
+
+[ i ] [ j ] = [ i ] [ k ] (경유지)
+
+가중치를 저장하는 배열과 경유지를 저장하는 배열을 각각 하나씩 만들어 일반적인 가중치를 비교하는 방법을 사용함과 동시에 경유지만을 저장하면 문제를 풀어낼 수 있다.
+
 
 ---
 
@@ -119,6 +179,7 @@ https://www.acmicpc.net/problem/1753
 ## 출제자 : PCYSB
 
 ### 코드
+
 
 ### 풀이
 
