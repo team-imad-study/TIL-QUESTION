@@ -179,9 +179,72 @@ https://www.acmicpc.net/problem/1753
 ## 출제자 : PCYSB
 
 ### 코드
+```java
+fun main() {
+    with(System.`in`.bufferedReader()) {
+        val (n, e) = readLine().split(" ").map { it.toInt() }
+        val start = readLine().toInt()
 
+        val graph = Array(n + 1) { mutableListOf<Pair<Int, Int>>() }
+
+        for (i in 0 until e) {
+            val (u, v, w) = readLine().split(" ").map { it.toInt() }
+            graph[u].add(v to w)
+        }
+
+        val distances = dijkstra(graph, start, n)
+
+        for (i in 1 until n + 1) {
+            val distance = if (distances[i] != Int.MAX_VALUE) {
+                distances[i].toString()
+            } else {
+                "INF"
+            }
+
+            println(distance)
+        }
+    }
+}
+
+fun dijkstra(graph: Array<MutableList<Pair<Int, Int>>>, start: Int, n: Int): Array<Int> {
+    val distances = Array(n + 1) { Int.MAX_VALUE }
+
+    val heap = PriorityQueue<Pair<Int, Int>> { c1, c2 ->
+        c1.first.compareTo(c2.first)
+    }
+
+    distances[start] = 0
+    heap.add(0 to start)
+
+    while (heap.isNotEmpty()) {
+        val (dist, now) = heap.poll()
+
+        if (distances[now] < dist) {
+            continue
+        }
+
+        for ((v, w) in graph[now]) {
+            val cost = dist + w
+
+            if (cost < distances[v]) {
+                distances[v] = cost
+                heap.add(cost to v)
+            }
+        }
+
+    }
+
+    return distances
+}
+```
 
 ### 풀이
+해당 문제는 단방향 그래프 이므로 주의해야한다. 해당 방법에서는 pair을 이용하여 연결된 간선과 가중치를 저장하는 리스트 배열을 사용하였다.
+
+다익스트라 함수에서는 
+우선순위 큐를 사용하여 현재 가장 가까운 노드를 선택하는 방식으로 진행하였다. 
+큐에서 가장 가까운 노드를 꺼내어 해당 노드를 통해 다른 노드로 가는 경로를 계산하고 경로가 기존 경로보다 짧은 경우에는 갱신하고 해당 노드를 큐에 추가한다.
+해당 함수에서 distance를 반환하고 결과를 출력한다.
 
 ## 풀이자 : KUN
 
