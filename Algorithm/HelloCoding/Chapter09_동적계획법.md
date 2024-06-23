@@ -156,8 +156,41 @@ public class Main {
 ## 풀이자 : Quarang
 
 ### 코드
+```swift
+let n = Int(readLine()!)!                                                   
+let weights = readLine()!.split(separator: " ").map{Int(String($0))!}
+let m = Int(readLine()!)!
+let marble = readLine()!.split(separator: " ").map{Int(String($0))!}
+var dp = Set<Int>()  
+
+for weight in weights {
+    var tmp:Set<Int> = [weight]
+    for d in dp {
+        tmp.insert(abs(weight-d))
+        tmp.insert(weight+d)
+    }
+    dp.formUnion(tmp)
+}
+print(marble.map{dp.contains($0) ? "Y" : "N"}.joined(separator: " "))
+```
 
 ### 풀이
+```
+이 문제는 추의 갯수와 구슬 개수를 입력 받아 각 구슬 별로 양팔 저울에 무게가 같게 만들 수 있는 모든 구슬의 무게를 검사 해 주어진 각 구슬의 무게에 대하여 확인이 가능하면 Y, 아니면 N 을 차례로 출력하는 문제
+```
+양팔저울이 수평이 되게 하는 조건은 다음과 같음
+
+1. 구슬들을 모두합해 추의 무게와 같게 하는 경우
+2. 구슬과 특정 추의 무게를 합이 다른 추와 크기가 같은 경우
+
+위와 같은 공식에 따라 추와 각각의 구슬들의 합과 차이를 구함
+
+> 과정
+1. 추의 갯수만큼 반복문 시작
+2. 반복할 때마다 추를 하나씩 집합에 추가
+3. 이미 저장되어있는 경우에 수(추의 합 혹은 차)에서 현재 구슬의 무게의 합 혹은 차를 계산(반복하여 가능한 모든 수를 검사)
+4. 집합은 중복이 안되는 특징이 있음으로 결괏값을 모두 합집합
+5. 마지막으로 구슬의 무게를 하나씩 입력받아 현재 집합에 추가 되어있는지를 판별하여 "Y"혹은 "N"을 출력
 
 ---
 
