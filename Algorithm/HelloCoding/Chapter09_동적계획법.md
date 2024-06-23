@@ -13,8 +13,44 @@ https://school.programmers.co.kr/learn/courses/30/lessons/42895
 ## 출제자 : Quarang
 
 ### 코드
+```swift
+func solution(_ N:Int, _ number:Int) -> Int {
+    var dp = Array(repeating: [Int](), count: 9)
+    for i in 1..<9 {
+        dp[i].append(Int(String(repeating: String(N), count: i))!)
+        for j in 1..<i {
+            for x1 in dp[j] {
+                for x2 in dp[i-j] {
+                    dp[i].append(x1*x2)
+                    dp[i].append(x1+x2)
+                    dp[i].append(x1-x2)
+                    if x2 != 0 { dp[i].append(x1/x2) }
+                }
+
+            }
+        }
+        if dp[i].contains(number){ return i }
+    }
+    return -1
+}
+```
 
 ### 풀이
+
+```
+위 문제는 한 숫자만으로 특정 값을 사칙연산으로 만들 수 있는 경우의 수 중 가장 적은 항의 갯수를 구하는 문제
+
+dfs혹은 bfs로도 풀수 있는 문제이지만 모든 경우를 다 검사해야하기 때문에 시간이 오래걸린다는 단점이 있음
+
+이에 동적계획법으로 인해 런타임 시간을 현저히 줄일 수 있게 됨
+```
+> 과정
+1. 먼저 모든 경우의 수를 저장할 2차원 배열 생성
+2. N은 한자리 수임으로 0부터 9까지 반복
+3. 첫번째는 해당 수로 만들수 있는 갯수만큼 첫번째로 추가(ex)N = 5라면 f(1) = 5, f(2) = 55, f(3) = 555..)
+4. 1부터 시작해 현제 i의 갯수만큼 반복하고 그 중 이미 저장되어있는 값에 사칙연산을 한번씩 모두 실행함
+5. 만약 사칙연산을 한 결괏값이 도출될 경우 해당 i번째를 리턴(반복을 0부터 1씩 늘려서 검사하기 때문에, 결괏값이 나오는 순간이 가장 적은 값이라 단언할 수 있음)
+6. 만약 모든 루프를 돌았음에도 결괏값이 나오지 않았다면 -1을 출력
 
 ## 풀이자 : PCYSB
 
